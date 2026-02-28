@@ -13,15 +13,9 @@ const tabs = [
   { id: 'contact', label: 'Contact', icon: Mail },
 ] as const
 
-// ==========================================
-// BRANDING CONFIGURATION
-// ==========================================
-
 const BRAND_NAME = 'pawwellbot.app'
 const TAGLINE = 'Peak Video Editing'
 const WEBSITE_URL = 'https://pawwellbot.app'
-
-// ==========================================
 
 export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -79,16 +73,17 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
             </div>
           </motion.div>
 
-          {/* iOS 26 Liquid Glass Navigation */}
+          {/* WIDER Navigation Bar */}
           <div className="absolute left-1/2 -translate-x-1/2">
             <motion.nav 
               ref={containerRef}
               className="relative flex items-center gap-1 bg-pawwelium-card/60 backdrop-blur-2xl rounded-full p-1.5 border border-white/5 shadow-2xl shadow-black/30"
               style={{
-                boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)'
+                boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
+                minWidth: '280px'
               }}
             >
-              {/* Liquid Glass Background */}
+              {/* Selection Indicator - LARGER */}
               <motion.div
                 className="absolute rounded-full bg-white cursor-grab active:cursor-grabbing touch-none"
                 style={{
@@ -124,7 +119,7 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
                   <motion.button
                     key={tab.id}
                     onClick={() => onTabChange(tab.id)}
-                    className={`relative flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors duration-300 z-10 w-[60px] sm:w-[80px] ${
+                    className={`relative flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors duration-300 z-10 w-[80px] sm:w-[100px] ${
                       isActive 
                         ? 'text-gray-900'
                         : 'text-gray-400 hover:text-white'
