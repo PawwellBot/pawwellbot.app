@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useRef } from 'react'
-import { MessageSquare, Mail, Play, Bot } from 'lucide-react'
+import { Bot, Clapperboard, Star, Send } from 'lucide-react'
 
 interface HeaderProps {
   activeTab: 'videos' | 'reviews' | 'contact'
@@ -8,9 +8,9 @@ interface HeaderProps {
 }
 
 const tabs = [
-  { id: 'videos', label: 'Videos', icon: Play },
-  { id: 'reviews', label: 'Reviews', icon: MessageSquare },
-  { id: 'contact', label: 'Contact', icon: Mail },
+  { id: 'videos', label: 'Videos', icon: Clapperboard },
+  { id: 'reviews', label: 'Reviews', icon: Star },
+  { id: 'contact', label: 'Contact', icon: Send },
 ] as const
 
 const BRAND_NAME = 'pawwellbot.app'
@@ -50,11 +50,11 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
       className="fixed top-0 left-0 right-0 z-50 glass py-3"
     >
       <div className="w-full px-3 sm:px-4">
-        <div className="flex items-center">
+        <div className="flex items-center justify-between">
           
-          {/* Logo */}
+          {/* Logo - Hidden on mobile */}
           <motion.div 
-            className="flex items-center gap-2 cursor-pointer group"
+            className="hidden sm:flex items-center gap-2 cursor-pointer group"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={handleLogoClick}
@@ -63,7 +63,7 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
               <Bot className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900" />
             </div>
             
-            <div className="hidden sm:block">
+            <div>
               <h1 className="text-base sm:text-lg font-bold gradient-text tracking-tight leading-tight group-hover:opacity-80 transition-opacity">
                 {BRAND_NAME}
               </h1>
@@ -73,17 +73,17 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
             </div>
           </motion.div>
 
-          {/* WIDER Navigation Bar */}
-          <div className="absolute left-1/2 -translate-x-1/2">
+          {/* Navigation: Mobile Right | Desktop Center */}
+          <div className="ml-auto sm:absolute sm:left-1/2 sm:-translate-x-1/2">
             <motion.nav 
               ref={containerRef}
-              className="relative flex items-center gap-1 bg-pawwelium-card/60 backdrop-blur-2xl rounded-full p-1.5 border border-white/5 shadow-2xl shadow-black/30"
+              className="relative flex items-center bg-pawwelium-card/60 backdrop-blur-2xl rounded-full p-1.5 border border-white/5 shadow-2xl shadow-black/30"
               style={{
                 boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
                 minWidth: '280px'
               }}
             >
-              {/* Selection Indicator - LARGER */}
+              {/* Selection Indicator */}
               <motion.div
                 className="absolute rounded-full bg-white cursor-grab active:cursor-grabbing touch-none"
                 style={{
@@ -110,7 +110,7 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/50 to-transparent opacity-60" />
               </motion.div>
 
-              {/* Tab Buttons - WITH ICONS */}
+              {/* Tab Buttons - SYMMETRICAL */}
               {tabs.map((tab) => {
                 const Icon = tab.icon
                 const isActive = activeTab === tab.id
@@ -119,7 +119,7 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
                   <motion.button
                     key={tab.id}
                     onClick={() => onTabChange(tab.id)}
-                    className={`relative flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors duration-300 z-10 w-[80px] sm:w-[100px] ${
+                    className={`relative flex items-center justify-center rounded-full text-xs sm:text-sm font-medium transition-colors duration-300 z-10 flex-1 h-[40px] sm:h-auto sm:py-2 sm:px-4 ${
                       isActive 
                         ? 'text-gray-900'
                         : 'text-gray-400 hover:text-white'
@@ -127,16 +127,22 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Icon className="w-4 h-4" />
-                    <span className="hidden sm:inline">{tab.label}</span>
+                    {/* SYMMETRICAL ICON CONTAINER */}
+                    <div className="w-6 h-6 flex items-center justify-center">
+                      <Icon 
+                        className="w-6 h-6 sm:w-5 sm:h-5" 
+                        strokeWidth={1.5}
+                      />
+                    </div>
+                    <span className="hidden sm:inline ml-2">{tab.label}</span>
                   </motion.button>
                 )
               })}
             </motion.nav>
           </div>
 
-          {/* Spacer */}
-          <div className="ml-auto w-20 sm:w-32" />
+          {/* Spacer - Hidden on mobile */}
+          <div className="hidden sm:block w-32" />
         </div>
       </div>
     </motion.header>
