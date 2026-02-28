@@ -47,102 +47,78 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
     <motion.header 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 glass py-3"
+      className="fixed top-0 left-0 right-0 z-50 py-4 bg-transparent"
     >
-      <div className="w-full px-3 sm:px-4">
-        <div className="flex items-center justify-between">
+      <div className="w-full px-4 sm:px-6">
+        <div className="flex items-center justify-between relative">
           
-          {/* Logo - Hidden on mobile */}
+          {/* Logo */}
           <motion.div 
-            className="hidden sm:flex items-center gap-2 cursor-pointer group"
+            className="hidden sm:flex items-center gap-3 cursor-pointer group z-10"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={handleLogoClick}
           >
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-white via-gray-200 to-gray-400 flex items-center justify-center shadow-lg shadow-white/20 group-hover:shadow-white/40 transition-shadow">
-              <Bot className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-white via-gray-200 to-gray-400 flex items-center justify-center shadow-lg shadow-white/20">
+              <Bot className="w-5 h-5 text-gray-900" />
             </div>
-            
             <div>
-              <h1 className="text-base sm:text-lg font-bold gradient-text tracking-tight leading-tight group-hover:opacity-80 transition-opacity">
-                {BRAND_NAME}
-              </h1>
-              <p className="text-[10px] text-pawwelium-muted -mt-0.5">
-                {TAGLINE}
-              </p>
+              <h1 className="text-lg font-bold gradient-text">{BRAND_NAME}</h1>
+              <p className="text-[10px] text-pawwelium-muted">{TAGLINE}</p>
             </div>
           </motion.div>
 
-          {/* Navigation: Mobile Right (small) | Desktop Center (big) */}
-          <div className="ml-auto sm:absolute sm:left-1/2 sm:-translate-x-1/2">
+          {/* Center Nav - REDUCED BLUR */}
+          <div className="absolute left-1/2 -translate-x-1/2">
             <motion.nav 
               ref={containerRef}
-              className="relative flex items-center bg-pawwelium-card/60 backdrop-blur-2xl rounded-full p-1.5 sm:p-2 border border-white/5 shadow-2xl shadow-black/30 nav-container"
+              className="relative flex items-center p-1.5 rounded-full"
               style={{
-                boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
-                minWidth: '240px',
+                background: 'rgba(255, 255, 255, 0.08)',        // More transparent
+                backdropFilter: 'blur(10px) saturate(140%)',    // Less blur & saturation
+                WebkitBackdropFilter: 'blur(10px) saturate(140%)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',  // Thinner border
+                boxShadow: '0 4px 16px rgba(0,0,0,0.15)',       // Softer shadow
+                minWidth: '320px',
               }}
             >
-              {/* Selection Indicator */}
+              {/* Subtler gloss */}
+              <div className="absolute inset-0 rounded-full pointer-events-none bg-gradient-to-b from-white/10 to-transparent" />
+
+              {/* Selection pill */}
               <motion.div
-                className="absolute rounded-full bg-white cursor-grab active:cursor-grabbing touch-none"
+                className="absolute rounded-full bg-white/95"
                 style={{
-                  top: '6px',
-                  bottom: '6px',
-                  left: '6px',
-                  width: 'calc(33.333% - 4px)',
-                  x: springX,
-                  boxShadow: '0 4px 20px rgba(255,255,255,0.3), inset 0 -2px 4px rgba(0,0,0,0.1)',
+                  top: '4px', bottom: '4px', left: '4px',
+                  width: 'calc(33.333% - 2.5px)', x: springX,
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                 }}
-                initial={false}
-                animate={{
-                  x: activeIndex * (containerRef.current ? (containerRef.current.offsetWidth - 12) / 3 : 0),
-                }}
+                animate={{ x: activeIndex * (containerRef.current ? (containerRef.current.offsetWidth - 8) / 3 : 0) }}
                 transition={{ type: "spring", stiffness: 500, damping: 35 }}
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.1}
                 onDragEnd={handleDragEnd}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/90 via-white to-gray-200/90" />
-                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/50 to-transparent opacity-60" />
-              </motion.div>
+              />
 
-              {/* Tab Buttons */}
+              {/* Tabs */}
               {tabs.map((tab) => {
                 const Icon = tab.icon
                 const isActive = activeTab === tab.id
-                
                 return (
                   <motion.button
                     key={tab.id}
                     onClick={() => onTabChange(tab.id)}
-                    className={`relative flex items-center justify-center rounded-full font-medium transition-colors duration-300 z-10 flex-1 ${
-                      isActive 
-                        ? 'text-gray-900'
-                        : 'text-gray-400 hover:text-white'
-                    }`}
-                    style={{ height: '36px' }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className={`relative flex items-center justify-center gap-2 rounded-full font-medium z-10 flex-1 py-2.5 px-4 ${isActive ? 'text-gray-900' : 'text-white/70'}`}
                   >
-                    {/* Icon - Same size on both, text only on desktop */}
-                    <div className="w-5 h-5 flex items-center justify-center">
-                      <Icon 
-                        className="w-5 h-5" 
-                        strokeWidth={1.5}
-                      />
-                    </div>
-                    <span className="hidden sm:inline ml-2 text-sm">{tab.label}</span>
+                    <Icon className="w-4 h-4" strokeWidth={1.5} />
+                    <span className="hidden sm:inline text-sm">{tab.label}</span>
                   </motion.button>
                 )
               })}
             </motion.nav>
           </div>
 
-          {/* Spacer - Hidden on mobile */}
           <div className="hidden sm:block w-32" />
         </div>
       </div>
