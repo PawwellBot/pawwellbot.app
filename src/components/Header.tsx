@@ -73,14 +73,14 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
             </div>
           </motion.div>
 
-          {/* Navigation: Mobile Right | Desktop Center */}
+          {/* Navigation: Mobile Right (small) | Desktop Center (big) */}
           <div className="ml-auto sm:absolute sm:left-1/2 sm:-translate-x-1/2">
             <motion.nav 
               ref={containerRef}
-              className="relative flex items-center bg-pawwelium-card/60 backdrop-blur-2xl rounded-full p-1.5 border border-white/5 shadow-2xl shadow-black/30"
+              className="relative flex items-center bg-pawwelium-card/60 backdrop-blur-2xl rounded-full p-1.5 sm:p-2 border border-white/5 shadow-2xl shadow-black/30 nav-container"
               style={{
                 boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
-                minWidth: '280px'
+                minWidth: '240px',
               }}
             >
               {/* Selection Indicator */}
@@ -110,7 +110,7 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/50 to-transparent opacity-60" />
               </motion.div>
 
-              {/* Tab Buttons - SYMMETRICAL */}
+              {/* Tab Buttons */}
               {tabs.map((tab) => {
                 const Icon = tab.icon
                 const isActive = activeTab === tab.id
@@ -119,22 +119,23 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
                   <motion.button
                     key={tab.id}
                     onClick={() => onTabChange(tab.id)}
-                    className={`relative flex items-center justify-center rounded-full text-xs sm:text-sm font-medium transition-colors duration-300 z-10 flex-1 h-[40px] sm:h-auto sm:py-2 sm:px-4 ${
+                    className={`relative flex items-center justify-center rounded-full font-medium transition-colors duration-300 z-10 flex-1 ${
                       isActive 
                         ? 'text-gray-900'
                         : 'text-gray-400 hover:text-white'
                     }`}
+                    style={{ height: '36px' }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    {/* SYMMETRICAL ICON CONTAINER */}
-                    <div className="w-6 h-6 flex items-center justify-center">
+                    {/* Icon - Same size on both, text only on desktop */}
+                    <div className="w-5 h-5 flex items-center justify-center">
                       <Icon 
-                        className="w-6 h-6 sm:w-5 sm:h-5" 
+                        className="w-5 h-5" 
                         strokeWidth={1.5}
                       />
                     </div>
-                    <span className="hidden sm:inline ml-2">{tab.label}</span>
+                    <span className="hidden sm:inline ml-2 text-sm">{tab.label}</span>
                   </motion.button>
                 )
               })}
