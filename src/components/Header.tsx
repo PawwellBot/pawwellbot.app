@@ -1,6 +1,9 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useRef } from 'react'
 import { Clapperboard, Star, Send } from 'lucide-react'
+// IMPORT the image - this is the key!
+import profileImage from '../assets/profile-square.png';
+
 
 interface HeaderProps {
   activeTab: 'videos' | 'reviews' | 'contact'
@@ -15,7 +18,7 @@ const tabs = [
 
 const BRAND_NAME = 'pawwellbot.app'
 const TAGLINE = 'Peak Video Editing'
-const WEBSITE_URL = 'https://pawwellbot.app'
+const WEBSITE_URL = 'https://pawwellbot.vercel.app'
 
 export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -42,13 +45,13 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
       <div className="w-full px-4 sm:px-6">
         <div className="flex items-center justify-between relative">
           
-          {/* Logo - FIXED PATH */}
+          {/* Logo with IMPORTED image */}
           <motion.div className="hidden sm:flex items-center gap-3 cursor-pointer group z-10" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={handleLogoClick}>
             
-            {/* RENAMED FILE: profile-square.png (no spaces) */}
+            {/* Use the imported image variable */}
             <div className="w-10 h-10 rounded-xl overflow-hidden">
               <img 
-                src="/assets/profile-square.png" 
+                src={profileImage}  // ← Use imported variable, not string path
                 alt="Profile" 
                 className="w-full h-full object-cover"
               />
