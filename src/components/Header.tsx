@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import { Clapperboard, Star, Send } from 'lucide-react'
 // IMPORT the image - this is the key!
 import profileImage from '../assets/profile-square.png';
-
+ 
 
 interface HeaderProps {
   activeTab: 'videos' | 'reviews' | 'contact'
