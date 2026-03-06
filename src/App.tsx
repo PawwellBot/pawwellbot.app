@@ -110,14 +110,14 @@ function App(): JSX.Element {
 
   return (
     <div className="min-h-screen bg-pawwelium-dark overflow-hidden flex flex-col relative">
-      {/* Scrolling Grid Background - Bigger & More Visible */}
+      {/* Scrolling Grid Background - Corner Lines, Faster */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div 
-          className="absolute inset-0 opacity-[0.08]"
+          className="absolute inset-0 opacity-[0.1]"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 120 0 L 0 0 0 120' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E")`,
-            backgroundSize: '120px 120px',
-            animation: 'gridScroll 15s linear infinite',
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='2.5'%3E%3Cpath d='M0 15V0h15M65 0h15v15M80 65v15h-15M15 80H0v-15'/%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: '80px 80px',
+            animation: 'gridScroll 4s linear infinite',
             width: '200%',
             height: '200%',
             top: '-50%',
