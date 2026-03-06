@@ -69,30 +69,37 @@ const videos = [
   }
 ]
 
+// Your actual reviews from the images
 const reviews = [
   {
     id: 1,
-    client: 'Gaming Creator',
-    role: 'YouTube Content Creator',
-    content: 'PawwellBot delivered incredible edits that boosted my engagement significantly. The pacing and transitions are top-notch!',
+    client: 'Byte',
+    role: 'Content Creator',
+    content: 'Working with Pawwell was a very interesting experience. His editing skills are extremely impressive considering he just started a couple months ago! I would highly recommend looking into Pawwell as your next video editor.',
     rating: 5,
-    avatar: '🎮'
+    avatar: '',
+    avatarType: 'image' as const,
+    avatarUrl: '/reviews/byte-logo.png' // You'll need to add this image
   },
   {
     id: 2,
-    client: 'Esports Team',
-    role: 'Professional Team Manager',
-    content: 'Outstanding work on our highlight reels. Fast turnaround and amazing attention to detail. Highly recommended!',
+    client: 'Mystic',
+    role: 'YouTube Creator',
+    content: 'Will do everything in his power to make sure the video is on time. Does a good job with revisions. Asks questions when confused. Overall a great editor, highly recommend!!!!',
     rating: 5,
-    avatar: '🏆'
+    avatar: '',
+    avatarType: 'image' as const,
+    avatarUrl: '/reviews/mystic-avatar.png' // You'll need to add this image
   },
   {
     id: 3,
-    client: 'Streamer',
-    role: 'Twitch Partner',
-    content: 'The best editor I have worked with. Understands exactly what content needs to go viral. Will definitely hire again!',
+    client: 'AngryRaving',
+    role: 'YouTube Creator',
+    content: 'Even though we live in different time zones he is very responsive and met the deadline early. He is very skilled. I have used a few editors and they don\'t even come close to professional. Pawwell is 10/10 would recommend!!!',
     rating: 5,
-    avatar: '📺'
+    avatar: '',
+    avatarType: 'image' as const,
+    avatarUrl: '/reviews/angryraving-logo.png' // You'll need to add this image
   }
 ]
 
@@ -103,7 +110,7 @@ function App(): JSX.Element {
 
   return (
     <div className="min-h-screen bg-pawwelium-dark overflow-hidden flex flex-col relative">
-      <main className="flex-1 overflow-y-auto pb-24">
+      <main className="flex-1 overflow-y-auto pb-32">
         <AnimatePresence mode="wait">
           {activeTab === 'videos' && (
             <motion.div

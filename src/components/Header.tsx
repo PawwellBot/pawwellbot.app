@@ -19,34 +19,36 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
     <motion.nav 
       initial={{ y: 100, x: '-50%' }} 
       animate={{ y: 0, x: '-50%' }}
-      className="fixed bottom-8 left-1/2 z-50"
+      className="fixed bottom-6 left-1/2 z-50"
     >
       <div 
-        className="relative flex items-center p-1.5 rounded-2xl"
+        className="relative flex items-center p-2 rounded-full"
         style={{ 
-          background: 'rgba(100, 100, 100, 0.22)',
-          backdropFilter: 'blur(16px) saturate(140%)',
-          WebkitBackdropFilter: 'blur(16px) saturate(140%)',
-          border: '1px solid rgba(255, 255, 255, 0.12)',
-          boxShadow: '0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15)'
+          background: 'rgba(30, 30, 30, 0.65)',
+          backdropFilter: 'blur(10px) saturate(120%)',
+          WebkitBackdropFilter: 'blur(10px) saturate(120%)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          boxShadow: '0 12px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08)'
         }}
       >
-        <div className="absolute inset-x-3 top-[1px] h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-full pointer-events-none" />
+        {/* Subtle top highlight */}
+        <div className="absolute inset-x-4 top-[1px] h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent rounded-full pointer-events-none" />
         
+        {/* iOS 26 style floating pill indicator - bigger */}
         <motion.div 
           className="absolute bg-white"
           style={{ 
-            top: '6px', 
-            bottom: '6px',
-            borderRadius: '14px',
-            width: '96px',
-            boxShadow: '0 2px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9)'
+            top: '8px', 
+            bottom: '8px',
+            borderRadius: '9999px',
+            boxShadow: '0 2px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.95)'
           }}
           initial={false}
           animate={{ 
-            x: 6 + (activeIndex * 100)
+            left: `${8 + (activeIndex * 104)}px`,
+            width: '104px'
           }}
-          transition={{ type: "spring", stiffness: 400, damping: 30 }}
+          transition={{ type: "spring", stiffness: 380, damping: 30 }}
         />
 
         {tabs.map((tab) => {
@@ -56,17 +58,17 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
             <motion.button
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
-              className={`relative flex items-center justify-center gap-2 z-10 h-11 transition-colors duration-200 ${
-                isActive ? 'text-gray-900' : 'text-white/75 hover:text-white'
+              className={`relative flex items-center justify-center gap-2.5 z-10 h-14 transition-colors duration-200 ${
+                isActive ? 'text-gray-900' : 'text-white/65 hover:text-white'
               }`}
               style={{ 
-                width: '96px',
-                borderRadius: '14px'
+                width: '104px',
+                borderRadius: '9999px'
               }}
-              whileTap={{ scale: 0.96 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <Icon className="w-[18px] h-[18px]" strokeWidth={isActive ? 2.5 : 1.5} />
-              <span className="text-[13px] font-semibold tracking-tight">{tab.label}</span>
+              <Icon className="w-5 h-5" strokeWidth={isActive ? 2.5 : 1.5} />
+              <span className="text-[15px] font-semibold tracking-tight">{tab.label}</span>
             </motion.button>
           )
         })}
