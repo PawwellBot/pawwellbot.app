@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { Play, ExternalLink, Clock, Eye } from 'lucide-react'
+import { ExternalLink, Clock, Eye } from 'lucide-react'
 
 interface Video {
   id: number
@@ -59,15 +59,8 @@ export default function VideoGrid({ videos }: VideoGridProps): JSX.Element {
                     }}
                   />
                   
-                  {/* Play Overlay */}
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white flex items-center justify-center shadow-lg shadow-white/50"
-                    >
-                      <Play className="w-5 h-5 sm:w-6 sm:h-6 text-gray-900 ml-0.5 sm:ml-1" fill="currentColor" />
-                    </motion.div>
-                  </div>
+                  {/* Hover overlay - darkens slightly but no play button */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                 </div>
 
                 <div className="p-4 sm:p-5">
