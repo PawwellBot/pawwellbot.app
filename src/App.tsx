@@ -9,7 +9,7 @@ import HeroSection from './components/HeroSection'
 const videos = [
   {
     id: 1,
-    title: 'Video Project 1',
+    title: 'The Tower Secret Strategy Guide',
     client: 'Client Project',
     duration: 'Short Form',
     views: 'YouTube',
@@ -19,7 +19,7 @@ const videos = [
   },
   {
     id: 2,
-    title: 'Video Project 2',
+    title: 'EASY vs NORMAL vs HARD - Full Comparison',
     client: 'Client Project',
     duration: 'Short Form',
     views: 'YouTube',
@@ -29,7 +29,7 @@ const videos = [
   },
   {
     id: 3,
-    title: 'Video Project 3',
+    title: '#1 & #2 106 Wave Strategy',
     client: 'Client Project',
     duration: 'Short Form',
     views: 'YouTube',
@@ -39,7 +39,7 @@ const videos = [
   },
   {
     id: 4,
-    title: 'Video Project 4',
+    title: 'Wave 111 Strategy Guide',
     client: 'Client Project',
     duration: 'Short Form',
     views: 'YouTube',
@@ -49,7 +49,7 @@ const videos = [
   },
   {
     id: 5,
-    title: 'Video Project 5',
+    title: 'Wave 128 Strategy Guide',
     client: 'Client Project',
     duration: 'Short Form',
     views: 'YouTube',
@@ -59,7 +59,7 @@ const videos = [
   },
   {
     id: 6,
-    title: 'Video Project 6',
+    title: 'Advanced Wave Strategy Tutorial',
     client: 'Client Project',
     duration: 'Short Form',
     views: 'YouTube',
@@ -79,7 +79,7 @@ const reviews = [
     rating: 5,
     avatar: '',
     avatarType: 'image' as const,
-    avatarUrl: '/reviews/itzbran.png' // Updated filename
+    avatarUrl: '/reviews/itzbran.png'
   },
   {
     id: 2,
@@ -89,7 +89,7 @@ const reviews = [
     rating: 5,
     avatar: '',
     avatarType: 'image' as const,
-    avatarUrl: '/reviews/manoftaj.png' // Updated filename
+    avatarUrl: '/reviews/manoftaj.png'
   },
   {
     id: 3,

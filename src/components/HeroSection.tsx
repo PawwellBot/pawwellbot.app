@@ -13,12 +13,12 @@ export default function HeroSection(): JSX.Element {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          {/* PawwellBot Profile Button - FrameCraft Style */}
+          {/* PawwellBot Profile Button - Circular Style */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 }}
-            className="inline-flex items-center gap-3 px-5 py-3 rounded-full mb-6 sm:mb-8"
+            className="inline-flex items-center gap-3 px-4 py-2 rounded-full mb-6 sm:mb-8"
             style={{
               background: 'rgba(40, 40, 40, 0.8)',
               backdropFilter: 'blur(12px) saturate(140%)',
@@ -27,7 +27,7 @@ export default function HeroSection(): JSX.Element {
               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
             }}
           >
-            <div className="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0 ring-2 ring-white/20">
+            <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white/20">
               <img 
                 src={profileImage} 
                 alt="PawwellBot"

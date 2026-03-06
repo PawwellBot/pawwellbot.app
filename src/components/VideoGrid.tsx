@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { ExternalLink, Clock, Eye } from 'lucide-react'
+import { Clock, Eye } from 'lucide-react'
 
 interface Video {
   id: number
@@ -22,15 +22,6 @@ export default function VideoGrid({ videos }: VideoGridProps): JSX.Element {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6 sm:mb-8">
           <h3 className="text-xl sm:text-2xl font-bold text-white">Featured Work</h3>
-          <motion.a
-            href="https://www.youtube.com/@PawwellBot"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            className="text-white hover:text-gray-300 transition-colors text-sm font-medium flex items-center gap-1"
-          >
-            View Channel <ExternalLink className="w-4 h-4" />
-          </motion.a>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
