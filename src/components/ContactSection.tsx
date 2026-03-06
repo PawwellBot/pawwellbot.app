@@ -26,17 +26,16 @@ export default function ContactSection(): JSX.Element {
   }
 
   return (
-    // ADDED pt-24 to push content below header
-    <section className="px-4 sm:px-6 pt-24 sm:pt-28 py-12 sm:py-20 min-h-screen">
+    <section className="px-4 sm:px-6 py-12 sm:py-20 min-h-screen">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 gradient-text">[PLACEHOLDER: Contact Title]</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 gradient-text">Get In Touch</h2>
           <p className="text-pawwelium-muted text-base sm:text-lg">
-            [PLACEHOLDER: Subtitle]
+            Ready to elevate your content? Let's work together.
           </p>
         </motion.div>
 
@@ -57,8 +56,8 @@ export default function ContactSection(): JSX.Element {
                 <XLogo className="w-5 h-5 sm:w-7 sm:h-7 text-black" />
               </div>
               
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">[PLACEHOLDER: Platform]</h3>
-              <p className="text-pawwelium-muted text-sm sm:text-base mb-3 sm:mb-4">[PLACEHOLDER: Description]</p>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">X (Twitter)</h3>
+              <p className="text-pawwelium-muted text-sm sm:text-base mb-3 sm:mb-4">Fastest way to reach me</p>
               
               <div className="flex items-center gap-2 text-white font-semibold text-sm sm:text-base">
                 <span>@PawwellBot</span>
@@ -98,7 +97,7 @@ export default function ContactSection(): JSX.Element {
             </AnimatePresence>
 
             <motion.button
-              onClick={() => handleEmailClick('[PLACEHOLDER: your@email.com]')}
+              onClick={() => handleEmailClick('pawwellinquiries@gmail.com')}
               whileHover={{ scale: 1.02, y: -4 }}
               whileTap={{ scale: 0.98 }}
               className="group relative overflow-hidden bg-gradient-to-br from-white/20 to-pawwelium-card border border-white/30 rounded-2xl p-6 sm:p-8 card-hover text-left w-full"
@@ -116,11 +115,11 @@ export default function ContactSection(): JSX.Element {
                   </div>
                 </div>
                 
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">[PLACEHOLDER: Email Title]</h3>
-                <p className="text-pawwelium-muted text-sm sm:text-base mb-3 sm:mb-4">[PLACEHOLDER: Description]</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">Email</h3>
+                <p className="text-pawwelium-muted text-sm sm:text-base mb-3 sm:mb-4">For detailed inquiries</p>
                 
                 <div className="flex items-center gap-2 text-white font-semibold text-sm sm:text-base">
-                  <span>[PLACEHOLDER: your@email.com]</span>
+                  <span>pawwellinquiries@gmail.com</span>
                 </div>
                 
                 <p className="text-white/40 text-xs mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -139,18 +138,18 @@ export default function ContactSection(): JSX.Element {
             transition={{ delay: 0.2 }}
             className="bg-pawwelium-card border border-pawwelium-border rounded-2xl p-5 sm:p-8 opacity-20 grayscale pointer-events-none select-none blur-sm"
           >
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6">[PLACEHOLDER: Form Title]</h3>
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6">Send a Message</h3>
             
             <form className="space-y-3 sm:space-y-4" onSubmit={(e) => e.preventDefault()}>
               <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
-                <input type="text" placeholder="[PLACEHOLDER: Name]" disabled className="w-full bg-pawwelium-dark border border-pawwelium-border rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-pawwelium-muted" />
-                <input type="email" placeholder="[PLACEHOLDER: Email]" disabled className="w-full bg-pawwelium-dark border border-pawwelium-border rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-pawwelium-muted" />
+                <input type="text" placeholder="Your Name" disabled className="w-full bg-pawwelium-dark border border-pawwelium-border rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-pawwelium-muted" />
+                <input type="email" placeholder="Your Email" disabled className="w-full bg-pawwelium-dark border border-pawwelium-border rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-pawwelium-muted" />
               </div>
-              <input type="text" placeholder="[PLACEHOLDER: Project Type]" disabled className="w-full bg-pawwelium-dark border border-pawwelium-border rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-pawwelium-muted" />
-              <textarea rows={4} placeholder="[PLACEHOLDER: Message]" disabled className="w-full bg-pawwelium-dark border border-pawwelium-border rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-pawwelium-muted resize-none" />
+              <input type="text" placeholder="Project Type" disabled className="w-full bg-pawwelium-dark border border-pawwelium-border rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-pawwelium-muted" />
+              <textarea rows={4} placeholder="Tell me about your project..." disabled className="w-full bg-pawwelium-dark border border-pawwelium-border rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-pawwelium-muted resize-none" />
               <button disabled className="w-full py-3 sm:py-4 bg-gradient-to-r from-white to-gray-200 text-gray-900 font-bold rounded-lg sm:rounded-xl flex items-center justify-center gap-2 text-sm sm:text-base opacity-50">
                 <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-                [PLACEHOLDER: Button]
+                Send Message
               </button>
             </form>
           </motion.div>
@@ -169,7 +168,7 @@ export default function ContactSection(): JSX.Element {
         </div>
 
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="text-center text-pawwelium-muted text-xs sm:text-sm mt-6 sm:mt-8">
-          [PLACEHOLDER: Footer text]
+          Peak Video Editing
         </motion.p>
       </div>
     </section>

@@ -16,17 +16,16 @@ interface ReviewsSectionProps {
 
 export default function ReviewsSection({ reviews }: ReviewsSectionProps): JSX.Element {
   return (
-    // ADDED pt-24 to push content below header
-    <section className="px-4 sm:px-6 pt-24 sm:pt-28 py-12 sm:py-20 min-h-screen">
+    <section className="px-4 sm:px-6 py-12 sm:py-20 min-h-screen">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 gradient-text">[PLACEHOLDER: Reviews Title]</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 gradient-text">Client Reviews</h2>
           <p className="text-pawwelium-muted text-base sm:text-lg">
-            [PLACEHOLDER: Subtitle]
+            What people say about working with me
           </p>
         </motion.div>
 
@@ -77,16 +76,16 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps): JSX.El
           className="mt-8 sm:mt-12 grid grid-cols-3 gap-3 sm:gap-6 text-center"
         >
           <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-pawwelium-card border border-pawwelium-border">
-            <div className="text-2xl sm:text-3xl font-bold gradient-text mb-1">[PLACEHOLDER]</div>
-            <div className="text-xs sm:text-sm text-pawwelium-muted">[PLACEHOLDER]</div>
+            <div className="text-2xl sm:text-3xl font-bold gradient-text mb-1">100%</div>
+            <div className="text-xs sm:text-sm text-pawwelium-muted">Satisfaction</div>
           </div>
           <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-pawwelium-card border border-pawwelium-border">
-            <div className="text-2xl sm:text-3xl font-bold gradient-text mb-1">[PLACEHOLDER]</div>
-            <div className="text-xs sm:text-sm text-pawwelium-muted">[PLACEHOLDER]</div>
+            <div className="text-2xl sm:text-3xl font-bold gradient-text mb-1">50+</div>
+            <div className="text-xs sm:text-sm text-pawwelium-muted">Clients</div>
           </div>
           <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-pawwelium-card border border-pawwelium-border">
-            <div className="text-2xl sm:text-3xl font-bold gradient-text mb-1">[PLACEHOLDER]</div>
-            <div className="text-xs sm:text-sm text-pawwelium-muted">[PLACEHOLDER]</div>
+            <div className="text-2xl sm:text-3xl font-bold gradient-text mb-1">24h</div>
+            <div className="text-xs sm:text-sm text-pawwelium-muted">Turnaround</div>
           </div>
         </motion.div>
       </div>
