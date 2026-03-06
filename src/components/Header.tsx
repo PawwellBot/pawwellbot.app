@@ -28,13 +28,15 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
           backdropFilter: 'blur(10px) saturate(120%)',
           WebkitBackdropFilter: 'blur(10px) saturate(120%)',
           border: '1px solid rgba(255, 255, 255, 0.1)',
-          boxShadow: '0 12px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08)'
+          boxShadow: '0 12px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+          paddingLeft: '12px',
+          paddingRight: '12px'
         }}
       >
         {/* Subtle top highlight */}
-        <div className="absolute inset-x-4 top-[1px] h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent rounded-full pointer-events-none" />
+        <div className="absolute inset-x-6 top-[1px] h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent rounded-full pointer-events-none" />
         
-        {/* iOS 26 style floating pill indicator - bigger */}
+        {/* iOS 26 style floating pill indicator - longer bar */}
         <motion.div 
           className="absolute bg-white"
           style={{ 
@@ -45,7 +47,7 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
           }}
           initial={false}
           animate={{ 
-            left: `${8 + (activeIndex * 104)}px`,
+            left: `${12 + (activeIndex * 120)}px`,
             width: '104px'
           }}
           transition={{ type: "spring", stiffness: 380, damping: 30 }}
@@ -62,7 +64,7 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
                 isActive ? 'text-gray-900' : 'text-white/65 hover:text-white'
               }`}
               style={{ 
-                width: '104px',
+                width: '120px', // Wider buttons for longer bar
                 borderRadius: '9999px'
               }}
               whileTap={{ scale: 0.95 }}

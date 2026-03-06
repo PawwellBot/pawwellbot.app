@@ -69,27 +69,27 @@ const videos = [
   }
 ]
 
-// Your actual reviews with image paths
+// Updated reviews with new names
 const reviews = [
   {
     id: 1,
-    client: 'Byte',
+    client: 'ItzBran',
     role: 'Content Creator',
     content: 'Working with Pawwell was a very interesting experience. His editing skills are extremely impressive considering he just started a couple months ago! I would highly recommend looking into Pawwell as your next video editor.',
     rating: 5,
     avatar: '',
     avatarType: 'image' as const,
-    avatarUrl: '/reviews/byte.png'
+    avatarUrl: '/reviews/itzbran.png' // Updated filename
   },
   {
     id: 2,
-    client: 'Mystic',
+    client: 'Manoftaj',
     role: 'YouTube Creator',
     content: 'Will do everything in his power to make sure the video is on time. Does a good job with revisions. Asks questions when confused. Overall a great editor, highly recommend!!!!',
     rating: 5,
     avatar: '',
     avatarType: 'image' as const,
-    avatarUrl: '/reviews/mystic.png'
+    avatarUrl: '/reviews/manoftaj.png' // Updated filename
   },
   {
     id: 3,
