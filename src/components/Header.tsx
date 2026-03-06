@@ -29,27 +29,29 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
           WebkitBackdropFilter: 'blur(10px) saturate(120%)',
           border: '1px solid rgba(255, 255, 255, 0.1)',
           boxShadow: '0 12px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
-          padding: '6px 8px'
+          padding: '6px'
         }}
       >
         {/* Subtle top highlight */}
         <div className="absolute inset-x-6 top-[1px] h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent rounded-full pointer-events-none" />
         
-        {/* iOS 26 style floating pill indicator - thinner and longer */}
+        {/* White pill indicator - perfectly aligned */}
         <motion.div 
           className="absolute bg-white"
           style={{ 
             top: '6px', 
             bottom: '6px',
             borderRadius: '9999px',
+            height: 'calc(100% - 12px)',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.95)'
           }}
           initial={false}
           animate={{ 
-            left: `${8 + (activeIndex * 130)}px`,
-            width: '122px'
+            left: '6px',
+            x: activeIndex * 130,
+            width: '130px'
           }}
-          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+          transition={{ type: "spring", stiffness: 400, damping: 32 }}
         />
 
         {tabs.map((tab) => {
