@@ -14,7 +14,7 @@ export default function HeroSection(): JSX.Element {
         >
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 border border-white/30 text-white text-xs sm:text-sm font-medium mb-4 sm:mb-6">
             <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            <span>Professional Video Editor</span>
+            <span>Peak Video Editor</span>
           </div>
           
           <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight">

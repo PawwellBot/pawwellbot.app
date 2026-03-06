@@ -21,7 +21,6 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
       animate={{ y: 0, x: '-50%' }}
       className="fixed bottom-8 left-1/2 z-50"
     >
-      {/* Modrinth-style Floating Dock */}
       <div 
         className="relative flex items-center p-1.5 rounded-2xl"
         style={{ 
@@ -32,10 +31,8 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
           boxShadow: '0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15)'
         }}
       >
-        {/* Subtle top highlight */}
         <div className="absolute inset-x-3 top-[1px] h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-full pointer-events-none" />
         
-        {/* White Active Pill - Perfectly centered in button */}
         <motion.div 
           className="absolute bg-white"
           style={{ 

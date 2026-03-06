@@ -40,7 +40,6 @@ export default function ContactSection(): JSX.Element {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-4 sm:gap-8 mb-8 sm:mb-12 relative">
-          {/* X Card */}
           <motion.a
             href="https://x.com/PawwellBot"
             target="_blank"
@@ -66,7 +65,6 @@ export default function ContactSection(): JSX.Element {
             </div>
           </motion.a>
 
-          {/* Email Card */}
           <div className="relative">
             <AnimatePresence>
               {showPopup && (
@@ -130,7 +128,6 @@ export default function ContactSection(): JSX.Element {
           </div>
         </div>
 
-        {/* Contact Form with Coming Soon Overlay */}
         <div className="relative">
           <motion.div
             initial={{ opacity: 1, y: 0 }}
@@ -168,7 +165,7 @@ export default function ContactSection(): JSX.Element {
         </div>
 
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="text-center text-pawwelium-muted text-xs sm:text-sm mt-6 sm:mt-8">
-          Peak Video Editing
+          Typical response time: under 24 hours
         </motion.p>
       </div>
     </section>

@@ -8,7 +8,6 @@ interface Review {
   content: string
   rating: number
   avatar: string
-  profileUrl?: string
 }
 
 interface ReviewsSectionProps {
@@ -26,51 +25,32 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps): JSX.El
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 gradient-text">Client Reviews</h2>
           <p className="text-pawwelium-muted text-base sm:text-lg">
-            What content creators say about working with me
+            What people say about working with me
           </p>
         </motion.div>
 
         <div className="grid gap-4 sm:gap-6">
           {reviews.map((review, index) => (
-            <motion.a
-              href={review.profileUrl || '#'}
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.div
               key={review.id}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.15 }}
               whileHover={{ scale: 1.02 }}
-              className="relative bg-gradient-to-r from-pawwelium-card to-pawwelium-dark border border-pawwelium-border rounded-2xl p-5 sm:p-8 card-hover block"
+              className="relative bg-gradient-to-r from-pawwelium-card to-pawwelium-dark border border-pawwelium-border rounded-2xl p-5 sm:p-8 card-hover"
             >
               <Quote className="absolute top-4 sm:top-6 right-4 sm:right-6 w-6 h-6 sm:w-10 sm:h-10 text-white/20" />
               
               <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                {/* Profile Image */}
-                <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl overflow-hidden flex-shrink-0 bg-gradient-to-br from-white/20 to-white/5 border border-white/10">
-                  {review.avatar.startsWith('http') ? (
-                    <img 
-                      src={review.avatar} 
-                      alt={review.client}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        target.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center text-2xl">🎮</div>`;
-                      }}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-2xl sm:text-3xl bg-gradient-to-br from-white to-gray-300">
-                      {review.avatar}
-                    </div>
-                  )}
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white to-gray-300 flex items-center justify-center text-xl sm:text-3xl shadow-lg shadow-white/20 flex-shrink-0">
+                  {review.avatar}
                 </div>
                 
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-2">
                     <div>
                       <h4 className="text-lg sm:text-xl font-bold text-white">{review.client}</h4>
-                      <p className="text-white/60 text-xs sm:text-sm">{review.role}</p>
+                      <p className="text-white text-xs sm:text-sm">{review.role}</p>
                     </div>
                     
                     <div className="flex gap-0.5 sm:gap-1">
@@ -85,7 +65,7 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps): JSX.El
                   </p>
                 </div>
               </div>
-            </motion.a>
+            </motion.div>
           ))}
         </div>
 
