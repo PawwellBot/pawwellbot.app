@@ -22,33 +22,32 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
       className="fixed bottom-6 left-1/2 z-50"
     >
       <div 
-        className="relative flex items-center p-2 rounded-full"
+        className="relative flex items-center rounded-full"
         style={{ 
           background: 'rgba(30, 30, 30, 0.65)',
           backdropFilter: 'blur(10px) saturate(120%)',
           WebkitBackdropFilter: 'blur(10px) saturate(120%)',
           border: '1px solid rgba(255, 255, 255, 0.1)',
           boxShadow: '0 12px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
-          paddingLeft: '12px',
-          paddingRight: '12px'
+          padding: '6px 8px'
         }}
       >
         {/* Subtle top highlight */}
         <div className="absolute inset-x-6 top-[1px] h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent rounded-full pointer-events-none" />
         
-        {/* iOS 26 style floating pill indicator - longer bar */}
+        {/* iOS 26 style floating pill indicator - thinner and longer */}
         <motion.div 
           className="absolute bg-white"
           style={{ 
-            top: '8px', 
-            bottom: '8px',
+            top: '6px', 
+            bottom: '6px',
             borderRadius: '9999px',
-            boxShadow: '0 2px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.95)'
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.95)'
           }}
           initial={false}
           animate={{ 
-            left: `${12 + (activeIndex * 120)}px`,
-            width: '104px'
+            left: `${8 + (activeIndex * 130)}px`,
+            width: '122px'
           }}
           transition={{ type: "spring", stiffness: 380, damping: 30 }}
         />
@@ -60,17 +59,18 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
             <motion.button
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
-              className={`relative flex items-center justify-center gap-2.5 z-10 h-14 transition-colors duration-200 ${
+              className={`relative flex items-center justify-center gap-2 z-10 transition-colors duration-200 ${
                 isActive ? 'text-gray-900' : 'text-white/65 hover:text-white'
               }`}
               style={{ 
-                width: '120px', // Wider buttons for longer bar
+                width: '130px',
+                height: '44px',
                 borderRadius: '9999px'
               }}
-              whileTap={{ scale: 0.95 }}
+              whileTap={{ scale: 0.96 }}
             >
-              <Icon className="w-5 h-5" strokeWidth={isActive ? 2.5 : 1.5} />
-              <span className="text-[15px] font-semibold tracking-tight">{tab.label}</span>
+              <Icon className="w-[18px] h-[18px]" strokeWidth={isActive ? 2.5 : 1.5} />
+              <span className="text-[14px] font-semibold tracking-tight">{tab.label}</span>
             </motion.button>
           )
         })}
