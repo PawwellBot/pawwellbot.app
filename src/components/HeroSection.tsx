@@ -29,16 +29,16 @@ export default function HeroSection(): JSX.Element {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-pawwelium-muted text-sm sm:text-base">
             <div className="flex items-center gap-2">
               <Scissors className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-              <span>5+ Years Experience</span>
+              <span>1.5 Years Experience</span>
             </div>
             <div className="hidden sm:block w-1 h-1 rounded-full bg-white" />
             <div className="flex items-center gap-2">
               <Film className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-              <span>100+ Projects</span>
+              <span>10+ Projects</span>
             </div>
             <div className="hidden sm:block w-1 h-1 rounded-full bg-white" />
             <div className="flex items-center gap-2">
-              <Bot className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+              <Bot className="w-4 h-4 sm:w-5 sm:h-5W text-white" />
               <span>@PawwellBot</span>
             </div>
           </div>

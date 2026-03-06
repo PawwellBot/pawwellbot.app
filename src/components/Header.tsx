@@ -17,36 +17,37 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
 
   return (
     <motion.nav 
-      initial={{ y: 100 }} 
-      animate={{ y: 0 }}
-      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"
+      initial={{ y: 100, x: '-50%' }} 
+      animate={{ y: 0, x: '-50%' }}
+      className="fixed bottom-6 left-1/2 z-50"
     >
-      {/* iOS 26 Style Floating Dock */}
+      {/* Compact iOS Floating Dock */}
       <div 
-        className="relative flex items-center gap-1 p-2 rounded-[32px]"
+        className="relative flex items-center p-1.5 rounded-full"
         style={{ 
-          background: 'rgba(255, 255, 255, 0.12)',
+          background: 'rgba(255, 255, 255, 0.1)',
           backdropFilter: 'blur(20px) saturate(180%)',
           WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-          border: '1px solid rgba(255, 255, 255, 0.15)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15)'
         }}
       >
-        {/* Top highlight line for glass effect */}
-        <div className="absolute inset-x-2 top-[1px] h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-full pointer-events-none" />
+        {/* Top highlight line */}
+        <div className="absolute inset-x-3 top-[1px] h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-full pointer-events-none" />
         
-        {/* Active Indicator Pill */}
+        {/* Active Pill Background */}
         <motion.div 
-          className="absolute rounded-[24px] bg-white/95"
+          className="absolute rounded-full bg-white"
           style={{ 
-            top: '8px', 
-            bottom: '8px', 
-            left: '8px', 
-            width: '88px',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)'
+            top: '6px', 
+            bottom: '6px', 
+            left: '6px',
+            height: 'calc(100% - 12px)',
+            width: '80px',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)'
           }}
           animate={{ 
-            x: activeIndex * 96
+            x: activeIndex * 84
           }}
           transition={{ type: "spring", stiffness: 500, damping: 35 }}
         />
@@ -58,13 +59,14 @@ export default function Header({ activeTab, onTabChange }: HeaderProps): JSX.Ele
             <motion.button
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
-              className={`relative flex flex-col items-center justify-center gap-1 rounded-[24px] z-10 w-[88px] h-[64px] transition-colors duration-200 ${
+              className={`relative flex items-center justify-center gap-2 rounded-full z-10 h-10 px-4 transition-colors duration-200 ${
                 isActive ? 'text-gray-900' : 'text-white/70 hover:text-white'
               }`}
+              style={{ width: '80px' }}
               whileTap={{ scale: 0.95 }}
             >
-              <Icon className="w-6 h-6" strokeWidth={isActive ? 2 : 1.5} />
-              <span className="text-[10px] font-medium">{tab.label}</span>
+              <Icon className="w-4 h-4" strokeWidth={isActive ? 2 : 1.5} />
+              <span className="text-xs font-medium">{tab.label}</span>
             </motion.button>
           )
         })}
