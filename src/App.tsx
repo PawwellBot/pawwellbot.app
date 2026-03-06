@@ -110,7 +110,23 @@ function App(): JSX.Element {
 
   return (
     <div className="min-h-screen bg-pawwelium-dark overflow-hidden flex flex-col relative">
-      <main className="flex-1 overflow-y-auto pb-32">
+      {/* Scrolling Grid Background - Bigger & More Visible */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div 
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 120 0 L 0 0 0 120' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E")`,
+            backgroundSize: '120px 120px',
+            animation: 'gridScroll 15s linear infinite',
+            width: '200%',
+            height: '200%',
+            top: '-50%',
+            left: '-50%'
+          }}
+        />
+      </div>
+
+      <main className="flex-1 overflow-y-auto pb-32 relative z-10">
         <AnimatePresence mode="wait">
           {activeTab === 'videos' && (
             <motion.div
