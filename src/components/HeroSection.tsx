@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { Sparkles, Scissors, Film, Bot } from 'lucide-react'
+import { Sparkles, Scissors, Film } from 'lucide-react'
+import profileImage from '../assets/profile-square.png'
 
 export default function HeroSection(): JSX.Element {
   return (
@@ -12,17 +13,35 @@ export default function HeroSection(): JSX.Element {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/10 border border-white/30 text-white text-xs sm:text-sm font-medium mb-4 sm:mb-6">
-            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            <span>Peak Video Editor</span>
-          </div>
+          {/* PawwellBot Profile Button - FrameCraft Style */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.1 }}
+            className="inline-flex items-center gap-3 px-5 py-3 rounded-full mb-6 sm:mb-8"
+            style={{
+              background: 'rgba(40, 40, 40, 0.8)',
+              backdropFilter: 'blur(12px) saturate(140%)',
+              WebkitBackdropFilter: 'blur(12px) saturate(140%)',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+            }}
+          >
+            <div className="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0 ring-2 ring-white/20">
+              <img 
+                src={profileImage} 
+                alt="PawwellBot"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <span className="text-white font-semibold text-base sm:text-lg tracking-tight">PawwellBot</span>
+          </motion.div>
           
           <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
             Creating <span className="gradient-text glow-text">Viral</span> Content
           </h2>
           
           <p className="text-base sm:text-xl text-pawwelium-muted max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
-            Hi, I'm <span className="text-white font-semibold">PawwellBot</span>. 
             Specializing in gaming content, highlights, and engaging short-form videos that capture attention.
           </p>
           
@@ -38,7 +57,7 @@ export default function HeroSection(): JSX.Element {
             </div>
             <div className="hidden sm:block w-1 h-1 rounded-full bg-white" />
             <div className="flex items-center gap-2">
-              <Bot className="w-4 h-4 sm:w-5 sm:h-5W text-white" />
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               <span>@PawwellBot</span>
             </div>
           </div>
