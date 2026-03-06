@@ -69,7 +69,7 @@ const videos = [
   }
 ]
 
-// Your actual reviews from the images
+// Your actual reviews with image paths
 const reviews = [
   {
     id: 1,
@@ -79,7 +79,7 @@ const reviews = [
     rating: 5,
     avatar: '',
     avatarType: 'image' as const,
-    avatarUrl: '/reviews/byte-logo.png' // You'll need to add this image
+    avatarUrl: '/reviews/byte.png'
   },
   {
     id: 2,
@@ -89,17 +89,17 @@ const reviews = [
     rating: 5,
     avatar: '',
     avatarType: 'image' as const,
-    avatarUrl: '/reviews/mystic-avatar.png' // You'll need to add this image
+    avatarUrl: '/reviews/mystic.png'
   },
   {
     id: 3,
-    client: 'AngryRaving',
+    client: 'AngryR3v3ng3',
     role: 'YouTube Creator',
     content: 'Even though we live in different time zones he is very responsive and met the deadline early. He is very skilled. I have used a few editors and they don\'t even come close to professional. Pawwell is 10/10 would recommend!!!',
     rating: 5,
     avatar: '',
     avatarType: 'image' as const,
-    avatarUrl: '/reviews/angryraving-logo.png' // You'll need to add this image
+    avatarUrl: '/reviews/angryr3v3ng3.png'
   }
 ]
 

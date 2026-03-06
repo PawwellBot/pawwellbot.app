@@ -44,12 +44,22 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps): JSX.El
               <Quote className="absolute top-4 sm:top-6 right-4 sm:right-6 w-6 h-6 sm:w-10 sm:h-10 text-white/10" />
               
               <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                {review.avatarType === 'image' ? (
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white/20">
+                {review.avatarType === 'image' && review.avatarUrl ? (
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white/20 bg-pawwelium-card">
                     <img 
                       src={review.avatarUrl} 
                       alt={review.client}
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        // Fallback to emoji if image fails
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const parent = target.parentElement;
+                        if (parent) {
+                          parent.innerHTML = '<span class="text-2xl">👤</span>';
+                          parent.classList.add('flex', 'items-center', 'justify-center', 'bg-gradient-to-br', 'from-white', 'to-gray-300');
+                        }
+                      }}
                     />
                   </div>
                 ) : (
