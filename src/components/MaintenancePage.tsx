@@ -1,23 +1,66 @@
 import { motion } from 'framer-motion'
-import { Wrench, Clock, AlertCircle, Loader2 } from 'lucide-react'
+import { Wrench, Clock, AlertCircle, Loader2, RefreshCw } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
-// Set maintenance end time here (in minutes from now)
+// Set maintenance duration here (in minutes)
 const MAINTENANCE_DURATION_MINUTES = 30
+const STORAGE_KEY = 'maintenance_end_time'
 
 export default function MaintenancePage(): JSX.Element {
-  const [timeLeft, setTimeLeft] = useState(MAINTENANCE_DURATION_MINUTES * 60) // Convert to seconds
+  const [timeLeft, setTimeLeft] = useState(0)
   const [isOverdue, setIsOverdue] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
 
+  // Initialize timer from localStorage or set new end time
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 0) {
-          setIsOverdue(true)
-          return 0
+    // Check if window exists (client-side only)
+    if (typeof window === 'undefined') return
+
+    const now = Date.now()
+    let endTime: number | null = null
+
+    try {
+      const storedEndTime = localStorage.getItem(STORAGE_KEY)
+      if (storedEndTime) {
+        endTime = parseInt(storedEndTime, 10)
+        // If stored time is in the past, clear it and set new time
+        if (endTime < now) {
+          localStorage.removeItem(STORAGE_KEY)
+          endTime = null
         }
-        return prev - 1
-      })
+      }
+    } catch (e) {
+      console.error('localStorage error:', e)
+    }
+
+    // If no valid stored time, set new end time
+    if (!endTime) {
+      endTime = now + (MAINTENANCE_DURATION_MINUTES * 60 * 1000)
+      try {
+        localStorage.setItem(STORAGE_KEY, endTime.toString())
+      } catch (e) {
+        console.error('localStorage set error:', e)
+      }
+    }
+
+    // Calculate initial time left
+    const calculateTimeLeft = () => {
+      const remaining = Math.max(0, Math.floor((endTime! - Date.now()) / 1000))
+      setTimeLeft(remaining)
+      setIsOverdue(remaining === 0)
+      setIsLoaded(true)
+    }
+
+    calculateTimeLeft()
+
+    // Update every second
+    const timer = setInterval(() => {
+      const remaining = Math.max(0, Math.floor((endTime! - Date.now()) / 1000))
+      setTimeLeft(remaining)
+      
+      if (remaining === 0) {
+        setIsOverdue(true)
+      }
     }, 1000)
 
     return () => clearInterval(timer)
@@ -30,9 +73,18 @@ export default function MaintenancePage(): JSX.Element {
     return `${mins}:${secs.toString().padStart(2, '0')}`
   }
 
+  // Show loading state while initializing
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-white animate-spin" />
+      </div>
+    )
+  }
+
   return (
-    <div className="min-h-screen bg-pawwelium-dark flex items-center justify-center px-6 relative overflow-hidden">
-      {/* Same grid background */}
+    <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center px-6 relative overflow-hidden">
+      {/* Grid background */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <div 
           className="absolute inset-0 opacity-[0.08]"
@@ -54,7 +106,7 @@ export default function MaintenancePage(): JSX.Element {
         transition={{ duration: 0.5 }}
         className="relative z-10 text-center max-w-2xl mx-auto"
       >
-        {/* Icon - BIGGER */}
+        {/* Icon */}
         <motion.div 
           animate={isOverdue ? {} : { rotate: [0, -10, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -67,28 +119,36 @@ export default function MaintenancePage(): JSX.Element {
           )}
         </motion.div>
 
-        {/* Title - BIGGER */}
+        {/* Title */}
         <h1 className="text-6xl sm:text-7xl font-bold text-white mb-6 leading-tight">
-          {isOverdue ? 'Almost\nReady' : 'Under\nMaintenance'}
+          {isOverdue ? (
+            <>Almost<br />Ready</>
+          ) : (
+            <>Under<br />Maintenance</>
+          )}
         </h1>
 
-        {/* Description - BIGGER */}
-        <p className="text-pawwelium-muted text-xl sm:text-2xl mb-10 leading-relaxed max-w-xl mx-auto">
+        {/* Description */}
+        <p className="text-gray-400 text-xl sm:text-2xl mb-10 leading-relaxed max-w-xl mx-auto">
           {isOverdue 
             ? "Update is ready but waiting for deployment. Should be live any moment now!"
             : "We're currently updating the site to bring you something amazing. Check back soon!"
           }
         </p>
 
-        {/* Status Card - BIGGER */}
-        <div className={`border rounded-3xl p-8 backdrop-blur-sm max-w-md mx-auto transition-colors duration-500 ${
-          isOverdue 
-            ? 'bg-yellow-500/10 border-yellow-500/30' 
-            : 'bg-pawwelium-card/80 border-pawwelium-border/50'
-        }`}>
-          <div className={`flex items-center justify-center gap-3 mb-4 ${
-            isOverdue ? 'text-yellow-400' : 'text-white'
-          }`}>
+        {/* Status Card */}
+        <div 
+          className={`border rounded-3xl p-8 backdrop-blur-sm max-w-md mx-auto transition-colors duration-500 ${
+            isOverdue 
+              ? 'bg-yellow-500/10 border-yellow-500/30' 
+              : 'bg-[#141414]/80 border-[#2A2A2A]/50'
+          }`}
+        >
+          <div 
+            className={`flex items-center justify-center gap-3 mb-4 ${
+              isOverdue ? 'text-yellow-400' : 'text-white'
+            }`}
+          >
             {isOverdue ? (
               <AlertCircle className="w-6 h-6" />
             ) : (
@@ -99,15 +159,19 @@ export default function MaintenancePage(): JSX.Element {
             </span>
           </div>
           
-          <p className={`text-4xl sm:text-5xl font-bold mb-3 ${
-            isOverdue ? 'text-yellow-400' : 'gradient-text'
-          }`}>
+          <p 
+            className={`text-4xl sm:text-5xl font-bold mb-3 ${
+              isOverdue ? 'text-yellow-400' : 'text-white'
+            }`}
+          >
             {isOverdue ? 'Waiting for maintainer' : formatTime(timeLeft)}
           </p>
           
-          <div className={`flex items-center justify-center gap-2 text-base ${
-            isOverdue ? 'text-yellow-400/70' : 'text-pawwelium-muted'
-          }`}>
+          <div 
+            className={`flex items-center justify-center gap-2 text-base ${
+              isOverdue ? 'text-yellow-400/70' : 'text-gray-500'
+            }`}
+          >
             {isOverdue ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
@@ -122,8 +186,21 @@ export default function MaintenancePage(): JSX.Element {
           </div>
         </div>
 
-        {/* Contact Info - BIGGER */}
-        <p className="text-pawwelium-muted text-lg mt-10">
+        {/* Reload Instruction - Only show when timer is up */}
+        {isOverdue && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mt-6 flex items-center justify-center gap-2 text-gray-500 text-sm"
+          >
+            <RefreshCw className="w-4 h-4" />
+            <span>If the page doesn't reload automatically, please reload it yourself</span>
+          </motion.div>
+        )}
+
+        {/* Contact Info */}
+        <p className="text-gray-500 text-lg mt-10">
           Need urgent help? Contact{' '}
           <a 
             href="https://x.com/PawwellBot" 

@@ -51,7 +51,7 @@ body {
     transform: translate(0, 0);
   }
   100% {
-    transform: translate(60px, 60px);
+    transform: translate(80px, 80px);
   }
 }
 
@@ -158,6 +158,27 @@ body {
   -webkit-box-orient: vertical;
   box-orient: vertical;
   overflow: hidden;
+}
+
+/* Custom utility classes */
+.bg-pawwelium-dark {
+  background-color: #0A0A0A;
+}
+
+.bg-pawwelium-card {
+  background-color: #141414;
+}
+
+.border-pawwelium-border {
+  border-color: #2A2A2A;
+}
+
+.text-pawwelium-muted {
+  color: #888888;
+}
+
+.text-pawwelium-text {
+  color: #F0F0F0;
 }
 
 @media (max-width: 768px) {
