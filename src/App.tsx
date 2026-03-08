@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Header from './components/Header'
 import VideoGrid from './components/VideoGrid'
 import ReviewsSection from './components/ReviewsSection'
 import ContactSection from './components/ContactSection'
 import HeroSection from './components/HeroSection'
+import MaintenancePage from './components/MaintenancePage'
 
 const videos = [
   {
@@ -69,7 +70,6 @@ const videos = [
   }
 ]
 
-// Updated reviews with new names
 const reviews = [
   {
     id: 1,
@@ -105,8 +105,23 @@ const reviews = [
 
 type TabType = 'videos' | 'reviews' | 'contact'
 
+// TOGGLE THIS TO ENABLE/DISABLE MAINTENANCE MODE
+const IS_MAINTENANCE_MODE = true
+
 function App(): JSX.Element {
   const [activeTab, setActiveTab] = useState<TabType>('videos')
+  const mainRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    if (mainRef.current) {
+      mainRef.current.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [activeTab])
+
+  // Show maintenance page if enabled
+  if (IS_MAINTENANCE_MODE) {
+    return <MaintenancePage />
+  }
 
   return (
     <div className="min-h-screen bg-pawwelium-dark overflow-hidden flex flex-col relative">
@@ -126,7 +141,7 @@ function App(): JSX.Element {
         />
       </div>
 
-      <main className="flex-1 overflow-y-auto pb-32 relative z-10">
+      <main ref={mainRef} className="flex-1 overflow-y-auto pb-32 relative z-10">
         <AnimatePresence mode="wait">
           {activeTab === 'videos' && (
             <motion.div
