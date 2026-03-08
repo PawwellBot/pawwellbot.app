@@ -187,4 +187,10 @@ function App(): JSX.Element {
   )
 }
 
+useEffect(() => {
+  if (!IS_MAINTENANCE_MODE) {
+    localStorage.removeItem('maintenance_end_time')
+  }
+}, [])
+
 export default App

@@ -1,7 +1,35 @@
 import { motion } from 'framer-motion'
-import { Wrench, Clock, AlertCircle } from 'lucide-react'
+import { Wrench, Clock, AlertCircle, Loader2 } from 'lucide-react'
+import { useState, useEffect } from 'react'
+
+// Set maintenance end time here (in minutes from now)
+const MAINTENANCE_DURATION_MINUTES = 30
 
 export default function MaintenancePage(): JSX.Element {
+  const [timeLeft, setTimeLeft] = useState(MAINTENANCE_DURATION_MINUTES * 60) // Convert to seconds
+  const [isOverdue, setIsOverdue] = useState(false)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 0) {
+          setIsOverdue(true)
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [])
+
+  // Format time as MM:SS
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins}:${secs.toString().padStart(2, '0')}`
+  }
+
   return (
     <div className="min-h-screen bg-pawwelium-dark flex items-center justify-center px-6 relative overflow-hidden">
       {/* Same grid background */}
@@ -28,34 +56,69 @@ export default function MaintenancePage(): JSX.Element {
       >
         {/* Icon - BIGGER */}
         <motion.div 
-          animate={{ rotate: [0, -10, 10, 0] }}
+          animate={isOverdue ? {} : { rotate: [0, -10, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="inline-flex items-center justify-center w-32 h-32 rounded-full bg-white/10 mb-10 ring-2 ring-white/20"
         >
-          <Wrench className="w-16 h-16 text-white" />
+          {isOverdue ? (
+            <Loader2 className="w-16 h-16 text-white animate-spin" />
+          ) : (
+            <Wrench className="w-16 h-16 text-white" />
+          )}
         </motion.div>
 
         {/* Title - BIGGER */}
         <h1 className="text-6xl sm:text-7xl font-bold text-white mb-6 leading-tight">
-          Under<br />Maintenance
+          {isOverdue ? 'Almost\nReady' : 'Under\nMaintenance'}
         </h1>
 
         {/* Description - BIGGER */}
         <p className="text-pawwelium-muted text-xl sm:text-2xl mb-10 leading-relaxed max-w-xl mx-auto">
-          We're currently updating the site to bring you something amazing. 
-          Check back soon!
+          {isOverdue 
+            ? "Update is ready but waiting for deployment. Should be live any moment now!"
+            : "We're currently updating the site to bring you something amazing. Check back soon!"
+          }
         </p>
 
         {/* Status Card - BIGGER */}
-        <div className="bg-pawwelium-card/80 border border-pawwelium-border/50 rounded-3xl p-8 backdrop-blur-sm max-w-md mx-auto">
-          <div className="flex items-center justify-center gap-3 text-white mb-4">
-            <Clock className="w-6 h-6" />
-            <span className="font-semibold text-lg">Estimated Time</span>
+        <div className={`border rounded-3xl p-8 backdrop-blur-sm max-w-md mx-auto transition-colors duration-500 ${
+          isOverdue 
+            ? 'bg-yellow-500/10 border-yellow-500/30' 
+            : 'bg-pawwelium-card/80 border-pawwelium-border/50'
+        }`}>
+          <div className={`flex items-center justify-center gap-3 mb-4 ${
+            isOverdue ? 'text-yellow-400' : 'text-white'
+          }`}>
+            {isOverdue ? (
+              <AlertCircle className="w-6 h-6" />
+            ) : (
+              <Clock className="w-6 h-6" />
+            )}
+            <span className="font-semibold text-lg">
+              {isOverdue ? 'Status' : 'Estimated Time'}
+            </span>
           </div>
-          <p className="text-5xl font-bold gradient-text mb-3">30 Minutes</p>
-          <div className="flex items-center justify-center gap-2 text-pawwelium-muted text-base">
-            <AlertCircle className="w-5 h-5" />
-            <span>Last updated: Just now</span>
+          
+          <p className={`text-4xl sm:text-5xl font-bold mb-3 ${
+            isOverdue ? 'text-yellow-400' : 'gradient-text'
+          }`}>
+            {isOverdue ? 'Waiting for maintainer' : formatTime(timeLeft)}
+          </p>
+          
+          <div className={`flex items-center justify-center gap-2 text-base ${
+            isOverdue ? 'text-yellow-400/70' : 'text-pawwelium-muted'
+          }`}>
+            {isOverdue ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                <span>Push update to go live</span>
+              </>
+            ) : (
+              <>
+                <AlertCircle className="w-5 h-5" />
+                <span>Auto-updating countdown</span>
+              </>
+            )}
           </div>
         </div>
 
