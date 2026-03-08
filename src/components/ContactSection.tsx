@@ -34,7 +34,7 @@ export default function ContactSection(): JSX.Element {
           className="text-center mb-10 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 gradient-text">Get In Touch</h2>
-          <p className="text-pawwelium-muted text-base sm:text-lg">
+          <p className="text-gray-500 text-base sm:text-lg">
             Ready to elevate your content? Let's work together.
           </p>
         </motion.div>
@@ -56,7 +56,7 @@ export default function ContactSection(): JSX.Element {
               </div>
               
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">X (Twitter)</h3>
-              <p className="text-pawwelium-muted text-sm sm:text-base mb-3 sm:mb-4">Fastest way to reach me</p>
+              <p className="text-gray-500 text-sm sm:text-base mb-3 sm:mb-4">Fastest way to reach me</p>
               
               <div className="flex items-center gap-2 text-white font-semibold text-sm sm:text-base">
                 <span>@PawwellBot</span>
@@ -75,21 +75,21 @@ export default function ContactSection(): JSX.Element {
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   className="absolute -top-20 left-1/2 -translate-x-1/2 z-20 w-full max-w-[280px]"
                 >
-                  <div className="bg-pawwelium-card border border-white/20 backdrop-blur-xl px-5 py-4 rounded-2xl shadow-2xl shadow-black/50 flex items-center gap-3">
+                  <div className="bg-[#141414] border border-white/20 px-5 py-4 rounded-2xl shadow-2xl shadow-black/50 flex items-center gap-3">
                     <motion.div
                       initial={{ scale: 0, rotate: -180 }}
                       animate={{ scale: 1, rotate: 0 }}
                       transition={{ delay: 0.1, type: "spring", stiffness: 500 }}
-                      className="w-10 h-10 rounded-full bg-gradient-to-br from-pawwelium-yellow to-pawwelium-gold flex items-center justify-center flex-shrink-0"
+                      className="w-10 h-10 rounded-full bg-white flex items-center justify-center flex-shrink-0"
                     >
                       <Check className="w-5 h-5 text-gray-900" />
                     </motion.div>
                     <div className="min-w-0">
                       <p className="font-semibold text-sm text-white">Copied to clipboard!</p>
-                      <p className="text-xs text-pawwelium-muted truncate">{copiedEmail}</p>
+                      <p className="text-xs text-gray-500 truncate">{copiedEmail}</p>
                     </div>
                   </div>
-                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-pawwelium-card border-r border-b border-white/20 rotate-45" />
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#141414] border-r border-b border-white/20 rotate-45" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -98,13 +98,13 @@ export default function ContactSection(): JSX.Element {
               onClick={() => handleEmailClick('pawwellinquiries@gmail.com')}
               whileHover={{ scale: 1.02, y: -4 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative overflow-hidden bg-gradient-to-br from-white/20 to-pawwelium-card border border-white/30 rounded-2xl p-6 sm:p-8 card-hover text-left w-full"
+              className="group relative overflow-hidden bg-[#141414] border border-white/30 rounded-2xl p-6 sm:p-8 card-hover text-left w-full"
             >
               <div className="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 bg-white/10 rounded-full blur-3xl group-hover:bg-white/20 transition-all" />
               
               <div className="relative z-10">
                 <div className="flex items-start justify-between mb-4 sm:mb-6">
-                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br from-white to-gray-300 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-white flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Mail className="w-5 h-5 sm:w-7 sm:h-7 text-gray-900" />
                   </div>
                   
@@ -114,7 +114,7 @@ export default function ContactSection(): JSX.Element {
                 </div>
                 
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">Email</h3>
-                <p className="text-pawwelium-muted text-sm sm:text-base mb-3 sm:mb-4">For detailed inquiries</p>
+                <p className="text-gray-500 text-sm sm:text-base mb-3 sm:mb-4">For detailed inquiries</p>
                 
                 <div className="flex items-center gap-2 text-white font-semibold text-sm sm:text-base">
                   <span>pawwellinquiries@gmail.com</span>
@@ -133,18 +133,18 @@ export default function ContactSection(): JSX.Element {
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-pawwelium-card border border-pawwelium-border rounded-2xl p-5 sm:p-8 opacity-20 grayscale pointer-events-none select-none blur-sm"
+            className="bg-[#141414] border border-[#2A2A2A] rounded-2xl p-5 sm:p-8 opacity-20 grayscale pointer-events-none select-none blur-sm"
           >
             <h3 className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6">Send a Message</h3>
             
             <form className="space-y-3 sm:space-y-4" onSubmit={(e) => e.preventDefault()}>
               <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
-                <input type="text" placeholder="Your Name" disabled className="w-full bg-pawwelium-dark border border-pawwelium-border rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-pawwelium-muted" />
-                <input type="email" placeholder="Your Email" disabled className="w-full bg-pawwelium-dark border border-pawwelium-border rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-pawwelium-muted" />
+                <input type="text" placeholder="Your Name" disabled className="w-full bg-[#0A0A0A] border border-[#2A2A2A] rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-gray-500" />
+                <input type="email" placeholder="Your Email" disabled className="w-full bg-[#0A0A0A] border border-[#2A2A2A] rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-gray-500" />
               </div>
-              <input type="text" placeholder="Project Type" disabled className="w-full bg-pawwelium-dark border border-pawwelium-border rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-pawwelium-muted" />
-              <textarea rows={4} placeholder="Tell me about your project..." disabled className="w-full bg-pawwelium-dark border border-pawwelium-border rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-pawwelium-muted resize-none" />
-              <button disabled className="w-full py-3 sm:py-4 bg-gradient-to-r from-white to-gray-200 text-gray-900 font-bold rounded-lg sm:rounded-xl flex items-center justify-center gap-2 text-sm sm:text-base opacity-50">
+              <input type="text" placeholder="Project Type" disabled className="w-full bg-[#0A0A0A] border border-[#2A2A2A] rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-gray-500" />
+              <textarea rows={4} placeholder="Tell me about your project..." disabled className="w-full bg-[#0A0A0A] border border-[#2A2A2A] rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder-gray-500 resize-none" />
+              <button disabled className="w-full py-3 sm:py-4 bg-white text-gray-900 font-bold rounded-lg sm:rounded-xl flex items-center justify-center gap-2 text-sm sm:text-base opacity-50">
                 <Send className="w-4 h-4 sm:w-5 sm:h-5" />
                 Send Message
               </button>
@@ -153,18 +153,18 @@ export default function ContactSection(): JSX.Element {
 
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4, type: "spring", stiffness: 200 }} className="absolute inset-0 flex items-center justify-center z-10">
             <div className="absolute inset-0 bg-black/40 backdrop-blur-[8px]" />
-            <div className="relative bg-pawwelium-card/95 border border-white/20 rounded-3xl px-12 py-10 shadow-2xl shadow-black/50 text-center min-w-[320px] sm:min-w-[400px]">
+            <div className="relative bg-[#141414] border border-white/20 rounded-3xl px-12 py-10 shadow-2xl shadow-black/50 text-center min-w-[320px] sm:min-w-[400px]">
               <motion.div animate={{ rotate: [0, 10, -10, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/10 mb-6">
                 <Clock className="w-10 h-10 text-white" />
               </motion.div>
               <h3 className="text-4xl font-bold text-white mb-4">Coming Soon</h3>
-              <p className="text-pawwelium-muted text-lg mb-2">Direct messaging is under development</p>
+              <p className="text-gray-500 text-lg mb-2">Direct messaging is under development</p>
               <p className="text-white/60 text-base mt-4">Use X or Email for now</p>
             </div>
           </motion.div>
         </div>
 
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="text-center text-pawwelium-muted text-xs sm:text-sm mt-6 sm:mt-8">
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="text-center text-gray-500 text-xs sm:text-sm mt-6 sm:mt-8">
           Typical response time: under 24 hours
         </motion.p>
       </div>

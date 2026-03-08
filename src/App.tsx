@@ -106,7 +106,7 @@ const reviews = [
 type TabType = 'videos' | 'reviews' | 'contact'
 
 // TOGGLE THIS TO ENABLE/DISABLE MAINTENANCE MODE
-const IS_MAINTENANCE_MODE = true
+const IS_MAINTENANCE_MODE = false
 
 function App(): JSX.Element {
   const [activeTab, setActiveTab] = useState<TabType>('videos')
