@@ -1,190 +1,510 @@
-import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import Header from './components/Header'
-import VideoGrid from './components/VideoGrid'
-import ReviewsSection from './components/ReviewsSection'
-import ContactSection from './components/ContactSection'
-import HeroSection from './components/HeroSection'
-import MaintenancePage from './components/MaintenancePage'
+import { useEffect, useState } from 'react'
 
-const videos = [
+const youtubeChannelId = 'UCS7dCSZsFgUZ9Zzu6OCTUwQ'
+
+type YouTubeVideo = {
+  id: string
+  title: string
+  url: string
+  thumbnail: string
+  published?: string
+}
+
+const quickLinks = [
   {
-    id: 1,
-    title: 'The Tower Secret Strategy Guide',
-    client: 'Client Project',
-    duration: 'Short Form',
-    views: 'YouTube',
-    thumbnail: 'https://img.youtube.com/vi/akFL91Jqy_g/maxresdefault.jpg',
-    description: 'Professional video editing showcase',
-    youtubeUrl: 'https://youtu.be/akFL91Jqy_g'
+    label: 'Discord',
+    note: 'https://discord.gg/NbCfSFj4fd',
   },
   {
-    id: 2,
-    title: 'EASY vs NORMAL vs HARD - Full Comparison',
-    client: 'Client Project',
-    duration: 'Short Form',
-    views: 'YouTube',
-    thumbnail: 'https://img.youtube.com/vi/5haV6rwtfoA/maxresdefault.jpg',
-    description: 'Professional video editing showcase',
-    youtubeUrl: 'https://youtu.be/5haV6rwtfoA'
+    label: 'GitHub',
+    note: 'https://github.com/PawwellBot',
   },
   {
-    id: 3,
-    title: '#1 & #2 106 Wave Strategy',
-    client: 'Client Project',
-    duration: 'Short Form',
-    views: 'YouTube',
-    thumbnail: 'https://img.youtube.com/vi/cwn9xxUEgmI/maxresdefault.jpg',
-    description: 'Professional video editing showcase',
-    youtubeUrl: 'https://youtu.be/cwn9xxUEgmI'
+    label: 'YouTube',
+    note: 'https://youtube.com/@PawwellBot',
   },
   {
-    id: 4,
-    title: 'Wave 111 Strategy Guide',
-    client: 'Client Project',
-    duration: 'Short Form',
-    views: 'YouTube',
-    thumbnail: 'https://img.youtube.com/vi/MUsBxQvg3vg/maxresdefault.jpg',
-    description: 'Professional video editing showcase',
-    youtubeUrl: 'https://youtu.be/MUsBxQvg3vg'
+    label: 'X / Twitter',
+    note: 'https://x.com/PawwellBot',
+    accent: true,
   },
-  {
-    id: 5,
-    title: 'Wave 128 Strategy Guide',
-    client: 'Client Project',
-    duration: 'Short Form',
-    views: 'YouTube',
-    thumbnail: 'https://img.youtube.com/vi/mibL4K_MxQs/maxresdefault.jpg',
-    description: 'Professional video editing showcase',
-    youtubeUrl: 'https://youtu.be/mibL4K_MxQs'
-  },
-  {
-    id: 6,
-    title: 'Advanced Wave Strategy Tutorial',
-    client: 'Client Project',
-    duration: 'Short Form',
-    views: 'YouTube',
-    thumbnail: 'https://img.youtube.com/vi/Q8bZjg43KhA/maxresdefault.jpg',
-    description: 'Professional video editing showcase',
-    youtubeUrl: 'https://youtu.be/Q8bZjg43KhA'
-  }
 ]
 
-const reviews = [
+const projectCards = [
   {
-    id: 1,
-    client: 'ItzBran',
-    role: 'Content Creator',
-    content: 'Working with Pawwell was a very interesting experience. His editing skills are extremely impressive considering he just started a couple months ago! I would highly recommend looking into Pawwell as your next video editor.',
-    rating: 5,
-    avatar: '',
-    avatarType: 'image' as const,
-    avatarUrl: '/reviews/itzbran.png'
+    title: 'PawwellBot',
+    tag: 'About',
+    description: 'Content Creator | Editor',
+    stats: 'Video Editor / Small Time YouTuber / Vibe Coder',
   },
   {
-    id: 2,
-    client: 'Manoftaj',
-    role: 'YouTube Creator',
-    content: 'Will do everything in his power to make sure the video is on time. Does a good job with revisions. Asks questions when confused. Overall a great editor, highly recommend!!!!',
-    rating: 5,
-    avatar: '',
-    avatarType: 'image' as const,
-    avatarUrl: '/reviews/manoftaj.png'
+    title: 'Public Repos',
+    tag: 'GitHub',
+    description: 'Live GitHub project list is ready to be fetched from the PawwellBot account.',
+    stats: '@PawwellBot',
   },
   {
-    id: 3,
-    client: 'AngryR3v3ng3',
-    role: 'YouTube Creator',
-    content: 'Even though we live in different time zones he is very responsive and met the deadline early. He is very skilled. I have used a few editors and they don\'t even come close to professional. Pawwell is 10/10 would recommend!!!',
-    rating: 5,
-    avatar: '',
-    avatarType: 'image' as const,
-    avatarUrl: '/reviews/angryr3v3ng3.png'
-  }
+    title: 'Contact',
+    tag: 'Direct',
+    description: 'Business and Discord contact details from the current live site.',
+    stats: 'pawwellinquiries@gmail.com / pawwell124',
+  },
 ]
 
-type TabType = 'videos' | 'reviews' | 'contact'
+const setupTables = [
+  {
+    title: 'Core Stack',
+    rows: [
+      ['Primary Device', 'Brand', 'Model coming soon'],
+      ['Camera', 'Brand', 'Placeholder entry'],
+      ['Lighting', 'Brand', 'Placeholder entry'],
+      ['Main Software', 'Suite', 'Placeholder entry'],
+    ],
+  },
+  {
+    title: 'Audio',
+    rows: [
+      ['Microphone', 'Brand', 'Placeholder entry'],
+      ['Interface', 'Brand', 'Placeholder entry'],
+      ['Headphones', 'Brand', 'Placeholder entry'],
+      ['Backup Input', 'Brand', 'Placeholder entry'],
+    ],
+  },
+  {
+    title: 'Peripherals',
+    rows: [
+      ['Keyboard', 'Brand', 'Placeholder entry'],
+      ['Mouse', 'Brand', 'Placeholder entry'],
+      ['Display', 'Brand', 'Placeholder entry'],
+      ['Controller', 'Brand', 'Placeholder entry'],
+    ],
+  },
+]
 
-// TOGGLE THIS TO ENABLE/DISABLE MAINTENANCE MODE
-const IS_MAINTENANCE_MODE = false
+const settingsCards = [
+  {
+    title: 'Gameplay',
+    lines: ['Sensitivity: TBD', 'Field of view: TBD', 'Key binds: TBD'],
+  },
+  {
+    title: 'Video',
+    lines: ['Resolution: TBD', 'Frame rate: TBD', 'Encoder preset: TBD'],
+  },
+  {
+    title: 'Audio Mix',
+    lines: ['Mic gain: TBD', 'Music ducking: TBD', 'Limiter chain: TBD'],
+  },
+]
 
-function App(): JSX.Element {
-  const [activeTab, setActiveTab] = useState<TabType>('videos')
-  const mainRef = useRef<HTMLElement>(null)
+type DecorNode = {
+  id: string
+  x: string
+  y: string
+  w: string
+  h: string
+  label: string
+  detail?: string
+  preview: string[]
+  socials?: Array<{
+    label: string
+    href: string
+  }>
+  tone?: 'main' | 'soft' | 'tiny'
+}
+
+type DecorLink = {
+  id: string
+  x: string
+  y: string
+  w: string
+  rotate: number
+}
+
+type DecorClusterData = {
+  className: string
+  nodes: DecorNode[]
+  links: DecorLink[]
+}
+
+function createReferenceModules(prefix: string, className: string): DecorClusterData {
+  return {
+    className,
+    nodes: [
+      {
+        id: `${prefix}-main`,
+        x: '2.25rem',
+        y: '0.85rem',
+        w: '7.15rem',
+        h: '4.25rem',
+        label: 'Links',
+        detail: 'Follow PawwellBot',
+        preview: ['Discord', 'GitHub', 'YouTube', 'X / Twitter'],
+        socials: [
+          { label: 'Discord', href: 'https://discord.gg/NbCfSFj4fd' },
+          { label: 'GitHub', href: 'https://github.com/PawwellBot' },
+          { label: 'YouTube', href: 'https://youtube.com/@PawwellBot' },
+          { label: 'X / Twitter', href: 'https://x.com/PawwellBot' },
+          { label: 'TikTok', href: 'https://tiktok.com/@pawwellbot' },
+          { label: 'Instagram', href: 'https://instagram.com/pawwellbot' },
+        ],
+        tone: 'main',
+      },
+      {
+        id: `${prefix}-github-projects`,
+        x: '8.35rem',
+        y: '0.2rem',
+        w: '3.25rem',
+        h: '1.15rem',
+        label: 'GitHub Projects',
+        detail: '@PawwellBot',
+        preview: ['Fetch public repos', 'Sort by updated', 'Show language + stars'],
+        tone: 'tiny',
+      },
+      {
+        id: `${prefix}-setup`,
+        x: '0.45rem',
+        y: '5.75rem',
+        w: '3.35rem',
+        h: '1.35rem',
+        label: 'Latest Videos',
+        detail: '@PawwellBot',
+        preview: ['Video Editing', 'Small Time YouTuber', 'Vibe Coder'],
+      },
+      {
+        id: `${prefix}-discord`,
+        x: '4.45rem',
+        y: '5.9rem',
+        w: '3.2rem',
+        h: '1.1rem',
+        label: 'Discord Presence',
+        detail: 'pawwell124',
+        preview: ['Presence fetcher', 'Discord server link', 'Status placeholder'],
+        tone: 'tiny',
+      },
+    ],
+    links: [
+      { id: `${prefix}-link-a`, x: '8.45rem', y: '1.32rem', w: '0.95rem', rotate: 90 },
+      { id: `${prefix}-link-b`, x: '9.35rem', y: '3.15rem', w: '0.45rem', rotate: 0 },
+      { id: `${prefix}-link-c`, x: '3.2rem', y: '5.12rem', w: '0.8rem', rotate: 90 },
+      { id: `${prefix}-link-d`, x: '3.8rem', y: '6.35rem', w: '0.65rem', rotate: 0 },
+    ],
+  }
+}
+
+const linksModules = createReferenceModules('links', 'panel-modules-links')
+const scheduleModules = createReferenceModules('schedule', 'panel-modules-schedule')
+const projectsModules = createReferenceModules('projects', 'panel-modules-projects')
+const setupModules = createReferenceModules('setup', 'panel-modules-setup')
+const settingsModules = createReferenceModules('settings', 'panel-modules-settings')
+
+function YouTubeVideos() {
+  const [videos, setVideos] = useState<YouTubeVideo[]>([])
+  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
 
   useEffect(() => {
-    if (mainRef.current) {
-      mainRef.current.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-  }, [activeTab])
+    let isMounted = true
 
-  // Show maintenance page if enabled
-  if (IS_MAINTENANCE_MODE) {
-    return <MaintenancePage />
+    async function loadVideos() {
+      try {
+        const response = await fetch(`/api/youtube?channelId=${youtubeChannelId}`)
+
+        if (!response.ok) {
+          throw new Error(`YouTube feed failed: ${response.status}`)
+        }
+
+        const data = (await response.json()) as { videos?: YouTubeVideo[] }
+
+        if (!isMounted) {
+          return
+        }
+
+        setVideos((data.videos ?? []).slice(0, 4))
+        setStatus('ready')
+      } catch (error) {
+        if (!isMounted) {
+          return
+        }
+
+        console.error(error)
+        setStatus('error')
+      }
+    }
+
+    loadVideos()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
+  if (status === 'loading') {
+    return (
+      <span className="youtube-feed youtube-feed-state">
+        <span>Fetching channel videos...</span>
+      </span>
+    )
+  }
+
+  if (status === 'error' || videos.length === 0) {
+    return (
+      <span className="youtube-feed youtube-feed-state">
+        <span>Videos load from the YouTube feed after deploy.</span>
+        <a href="https://youtube.com/@PawwellBot" target="_blank" rel="noreferrer">
+          Open channel
+        </a>
+      </span>
+    )
   }
 
   return (
-    <div className="min-h-screen bg-pawwelium-dark overflow-hidden flex flex-col relative">
-      {/* Scrolling Grid Background */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-[0.08]"
+    <span className="youtube-feed">
+      {videos.map((video) => (
+        <a key={video.id} className="youtube-card" href={video.url} target="_blank" rel="noreferrer">
+          <img src={video.thumbnail} alt="" loading="lazy" />
+          <span>
+            <strong>{video.title}</strong>
+            {video.published ? <small>{video.published}</small> : null}
+          </span>
+        </a>
+      ))}
+    </span>
+  )
+}
+
+function PanelModules({ cluster }: { cluster: DecorClusterData }) {
+  return (
+    <div className={`panel-modules ${cluster.className}`}>
+      {cluster.links.map((link) => (
+        <span
+          key={link.id}
+          className="panel-module-link"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 80 0 L 0 0 0 80' fill='none' stroke='%23ffffff' stroke-width='1.5'/%3E%3C/svg%3E")`,
-            backgroundSize: '80px 80px',
-            animation: 'gridScroll 4s linear infinite',
-            width: '200%',
-            height: '200%',
-            top: '-50%',
-            left: '-50%'
+            left: link.x,
+            top: link.y,
+            width: link.w,
+            transform: `rotate(${link.rotate}deg)`,
           }}
         />
-      </div>
-
-      <main ref={mainRef} className="flex-1 overflow-y-auto pb-32 relative z-10">
-        <AnimatePresence mode="wait">
-          {activeTab === 'videos' && (
-            <motion.div
-              key="videos"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <HeroSection />
-              <VideoGrid videos={videos} />
-            </motion.div>
+      ))}
+      {cluster.nodes.map((node) => (
+        <article
+          key={node.id}
+          className={`panel-module-node panel-module-node-${node.tone ?? 'soft'} panel-module-node-${node.id}`}
+          style={{
+            left: node.x,
+            top: node.y,
+            width: node.w,
+            height: node.h,
+          }}
+        >
+          <span className="panel-module-label">{node.label}</span>
+          {node.detail ? <span className="panel-module-detail">{node.detail}</span> : null}
+          {node.socials ? (
+            <span className="panel-module-socials">
+              {node.socials.map((social) => (
+                <a key={social.label} href={social.href} target="_blank" rel="noreferrer">
+                  <span>{social.label}</span>
+                  <span>Open</span>
+                </a>
+              ))}
+            </span>
+          ) : node.id.endsWith('-setup') ? (
+            <YouTubeVideos />
+          ) : (
+            <span className="panel-module-preview">
+              {node.preview.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </span>
           )}
-          
-          {activeTab === 'reviews' && (
-            <motion.div
-              key="reviews"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ReviewsSection reviews={reviews} />
-            </motion.div>
-          )}
-          
-          {activeTab === 'contact' && (
-            <motion.div
-              key="contact"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ContactSection />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </main>
-
-      <Header activeTab={activeTab} onTabChange={setActiveTab} />
+        </article>
+      ))}
     </div>
   )
 }
 
-export default App
+export default function App() {
+  return (
+    <div className="site-shell">
+      <header className="site-header">
+        <a className="logo-text" href="#top">
+          Pawwell<span>Bot</span>
+        </a>
+      </header>
+
+      <main className="page-wrapper" id="top">
+        <section className="hero-panel">
+          <div className="panel hero-copy">
+            <p className="section-kicker">@PawwellBot</p>
+            <h1>Video Editor. Content Creator.</h1>
+            <p className="lead-copy">
+              Content Creator | Editor. Online from UTC+1, building around video editing,
+              small-time YouTube content, and vibe-coded projects.
+            </p>
+            <div className="action-row">
+              <a className="button button-accent" href="mailto:pawwellinquiries@gmail.com">
+                <span className="button-label">Email</span>
+              </a>
+              <a className="button" href="https://discord.gg/NbCfSFj4fd" target="_blank" rel="noreferrer">
+                <span className="button-label">Discord</span>
+              </a>
+            </div>
+          </div>
+          <div className="panel details-panel">
+            <div className="hero-abstract" aria-label="Website information map">
+              <PanelModules cluster={projectsModules} />
+            </div>
+          </div>
+        </section>
+
+        <div className="split-grid">
+          <section className="panel" id="links">
+            <div className="panel-shell panel-shell-compact">
+              <div className="panel-body">
+                <div className="section-heading">
+                  <p className="section-kicker">Links</p>
+                  <h2>Swap these buttons for your real destinations.</h2>
+                </div>
+                <div className="button-grid">
+                  {quickLinks.map((link) => (
+                    <div key={link.label} className="link-item">
+                      <a
+                        className={`button link-button ${link.accent ? 'button-accent' : ''}`}
+                        href="#"
+                        onClick={(event) => event.preventDefault()}
+                      >
+                        <span className="button-label">{link.label}</span>
+                      </a>
+                      <span className="link-note">{link.note}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <PanelModules cluster={linksModules} />
+            </div>
+          </section>
+
+          <section className="panel" id="schedule">
+            <div className="panel-shell panel-shell-compact">
+              <div className="panel-body">
+                <div className="section-heading">
+                  <p className="section-kicker">Schedule</p>
+                  <h2>Use this space for stream times, drops, or launch dates.</h2>
+                </div>
+                <p className="section-copy">
+                  No fixed schedule is live yet. Replace this block with your streaming routine,
+                  release cadence, or a one-line directive telling people where to get notified first.
+                </p>
+                <div className="schedule-box">
+                  <p className="schedule-day">Mon / Wed / Fri</p>
+                  <p className="schedule-time">Placeholder window: 8:00 PM - 11:00 PM</p>
+                  <p className="schedule-note">
+                    Swap the cadence, timezone, and notification platform once you send real details.
+                  </p>
+                </div>
+              </div>
+              <PanelModules cluster={scheduleModules} />
+            </div>
+          </section>
+        </div>
+
+        <section className="panel" id="projects">
+          <div className="panel-shell panel-shell-wide">
+            <div className="panel-body">
+              <div className="section-heading">
+                <p className="section-kicker">Projects</p>
+                <h2>Three slots for the pages or products you want to push hardest.</h2>
+              </div>
+              <div className="project-grid">
+                {projectCards.map((project, index) => (
+                  <article key={project.title} className={`project-card ${index === 0 ? 'project-card-featured' : ''}`}>
+                    <div className="project-card-header">
+                      <div>
+                        <span className="project-card-title">{project.title}</span>
+                        <span className="project-card-tag">{project.tag}</span>
+                      </div>
+                      <span className="project-card-arrow">-&gt;</span>
+                    </div>
+                    <p className="project-card-desc">{project.description}</p>
+                    <p className="project-card-stats">{project.stats}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+            <PanelModules cluster={projectsModules} />
+          </div>
+        </section>
+
+        <section className="panel" id="setup">
+          <div className="panel-shell panel-shell-wide">
+            <div className="panel-body">
+              <div className="section-heading">
+                <p className="section-kicker">Setup</p>
+                <h2>Hardware and software tables, ready for your real stack.</h2>
+              </div>
+              <p className="section-copy">
+                The reference site exposes the creator setup in clear tables. This keeps that pattern
+                but leaves the actual gear blank until you hand over the final list.
+              </p>
+              <div className="table-stack">
+                {setupTables.map((table) => (
+                  <table key={table.title}>
+                    <thead>
+                      <tr>
+                        <th className="table-banner" colSpan={3}>
+                          {table.title}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {table.rows.map((row) => (
+                        <tr key={row[0]}>
+                          <th>{row[0]}</th>
+                          <td>{row[1]}</td>
+                          <td>{row[2]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ))}
+              </div>
+            </div>
+            <PanelModules cluster={setupModules} />
+          </div>
+        </section>
+
+        <section className="panel" id="settings">
+          <div className="panel-shell panel-shell-wide">
+            <div className="panel-body">
+              <div className="section-heading">
+                <p className="section-kicker">Settings</p>
+                <h2>Another placeholder block for game, stream, or production settings.</h2>
+              </div>
+              <div className="settings-grid">
+                {settingsCards.map((card) => (
+                  <article key={card.title} className="settings-card">
+                    <h3>{card.title}</h3>
+                    <div className="settings-list">
+                      {card.lines.map((line) => (
+                        <p key={line}>{line}</p>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+            <PanelModules cluster={settingsModules} />
+          </div>
+        </section>
+      </main>
+
+      <footer className="site-footer" id="footer">
+        <div>
+          <p className="footer-title">Placeholder Brand</p>
+          <p className="footer-copy">Replace this footer with your final brand line, socials, and version note.</p>
+        </div>
+        <span className="footer-badge">v0.1 placeholder build</span>
+      </footer>
+    </div>
+  )
+}
