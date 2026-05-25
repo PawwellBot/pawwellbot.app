@@ -8,6 +8,56 @@ type YouTubeVideo = {
   url: string
   thumbnail: string
   published?: string
+  views?: string
+  likes?: string
+  description?: string
+  channel?: string
+  duration?: string
+  age?: string
+}
+
+const mockThumbnail = (label: string) =>
+  `data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
+      <rect width="640" height="360" fill="#111111"/>
+      <rect x="24" y="24" width="592" height="312" rx="24" fill="#1f2023"/>
+      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="38" font-weight="800">${label}</text>
+    </svg>`,
+  )}`
+
+const mockYouTubeVideos: YouTubeVideo[] = [
+  {
+    id: 'mock-video-1',
+    title: 'Latest channel upload',
+    url: 'https://youtube.com/@PawwellBot',
+    thumbnail: mockThumbnail('PawwellBot'),
+    published: 'Mock preview',
+    views: '12.4K views',
+    likes: '840 likes',
+    channel: 'PawwellBot',
+    duration: '3:34',
+    age: '2 days ago',
+  },
+  {
+    id: 'mock-video-2',
+    title: 'Recent gaming edit',
+    url: 'https://youtube.com/@PawwellBot',
+    thumbnail: mockThumbnail('Gaming Edit'),
+    published: 'Mock preview',
+    views: '8.1K views',
+    likes: '520 likes',
+    channel: 'PawwellBot',
+    duration: '2:18',
+    age: '1 week ago',
+  },
+]
+
+function getYouTubeThumbnail(video: YouTubeVideo) {
+  if (video.thumbnail) {
+    return video.thumbnail
+  }
+
+  return `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`
 }
 
 const quickLinks = [
@@ -28,6 +78,15 @@ const quickLinks = [
     note: 'https://x.com/PawwellBot',
     accent: true,
   },
+]
+
+const socialLinks = [
+  { label: 'Discord', href: 'https://discord.gg/NbCfSFj4fd' },
+  { label: 'GitHub', href: 'https://github.com/PawwellBot' },
+  { label: 'YouTube', href: 'https://youtube.com/@PawwellBot' },
+  { label: 'X / Twitter', href: 'https://x.com/PawwellBot' },
+  { label: 'TikTok', href: 'https://tiktok.com/@pawwellbot' },
+  { label: 'Instagram', href: 'https://instagram.com/pawwellbot' },
 ]
 
 const projectCards = [
@@ -245,27 +304,24 @@ function YouTubeVideos() {
     )
   }
 
-  if (status === 'error' || videos.length === 0) {
-    return (
-      <span className="youtube-feed youtube-feed-state">
-        <span>Videos load from the YouTube feed after deploy.</span>
-        <a href="https://youtube.com/@PawwellBot" target="_blank" rel="noreferrer">
-          Open channel
-        </a>
-      </span>
-    )
-  }
+  const visibleVideos = status === 'ready' && videos.length > 0 ? videos : mockYouTubeVideos
 
   return (
     <span className="youtube-feed">
-      {videos.map((video) => (
-        <a key={video.id} className="youtube-card" href={video.url} target="_blank" rel="noreferrer">
-          <img src={video.thumbnail} alt="" loading="lazy" />
-          <span>
-            <strong>{video.title}</strong>
-            {video.published ? <small>{video.published}</small> : null}
+      {visibleVideos.map((video) => (
+        <article key={video.id} className="youtube-card">
+          <span className="youtube-thumb">
+            <img src={getYouTubeThumbnail(video)} alt="" loading="lazy" />
+            {video.duration ? <span className="youtube-duration">{video.duration}</span> : null}
           </span>
-        </a>
+          <span className="youtube-meta-row">
+            <span className="youtube-avatar" aria-hidden="true">P</span>
+            <span className="youtube-copy">
+              <strong>{video.title}</strong>
+              <small>{[video.views, video.age, video.likes].filter(Boolean).join(' - ')}</small>
+            </span>
+          </span>
+        </article>
       ))}
     </span>
   )
@@ -336,10 +392,12 @@ export default function App() {
         <section className="hero-panel">
           <div className="panel hero-copy">
             <p className="section-kicker">@PawwellBot</p>
-            <h1>Video Editor. Content Creator.</h1>
+            <h1>Content Creator.</h1>
             <p className="lead-copy">
-              Content Creator | Editor. Online from UTC+1, building around video editing,
-              small-time YouTube content, and vibe-coded projects.
+              I make gaming-focused videos, edits, and small creative projects around the
+              PawwellBot brand. The site brings together my socials, latest uploads, project
+              links, and contact details in one place, with more creator tools and updates planned
+              as the channel grows.
             </p>
             <div className="action-row">
               <a className="button button-accent" href="mailto:pawwellinquiries@gmail.com">
@@ -350,11 +408,37 @@ export default function App() {
               </a>
             </div>
           </div>
-          <div className="panel details-panel">
-            <div className="hero-abstract" aria-label="Website information map">
-              <PanelModules cluster={projectsModules} />
+          <section className="panel dashboard-card social-card" aria-labelledby="social-card-title">
+            <div className="dashboard-card-heading">
+              <p className="section-kicker" id="social-card-title">Links</p>
+              <span>Follow PawwellBot</span>
             </div>
-          </div>
+            <div className="social-button-list">
+              {socialLinks.map((social) => (
+                <a key={social.label} className="button" href={social.href} target="_blank" rel="noreferrer">
+                  <span className="button-label">{social.label}</span>
+                </a>
+              ))}
+            </div>
+          </section>
+          <section className="panel dashboard-card projects-card" aria-labelledby="projects-card-title">
+            <div className="dashboard-card-heading">
+              <p className="section-kicker" id="projects-card-title">GitHub Projects</p>
+              <span>@PawwellBot</span>
+            </div>
+            <div className="project-action-list">
+              <span>Fetch public repos</span>
+              <span>Sort by updated</span>
+              <span>Show language + stars</span>
+            </div>
+          </section>
+          <section className="panel dashboard-card videos-card" aria-labelledby="videos-card-title">
+            <div className="dashboard-card-heading">
+              <p className="section-kicker" id="videos-card-title">Latest Videos</p>
+              <span>@PawwellBot</span>
+            </div>
+            <YouTubeVideos />
+          </section>
         </section>
 
         <div className="split-grid">

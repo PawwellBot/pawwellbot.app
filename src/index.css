@@ -3187,6 +3187,372 @@ table {
   background: #9e6f2b;
 }
 
+/* Active black-and-white theme lock. Keep this at the end of the file. */
+:root {
+  --bw-black: #000000;
+  --bw-near-black: #050505;
+  --bw-surface: rgba(8, 8, 8, 0.96);
+  --bw-surface-soft: rgba(18, 18, 18, 0.96);
+  --bw-border: rgba(255, 255, 255, 0.18);
+  --bw-border-strong: rgba(255, 255, 255, 0.34);
+  --bw-white: #ffffff;
+  --bw-muted: rgba(255, 255, 255, 0.68);
+  --bw-muted-strong: rgba(255, 255, 255, 0.84);
+  --bw-button: #f2f2f2;
+  --bw-button-hover: #ffffff;
+  --bw-button-active: #cfcfcf;
+  --bw-button-text: #080808;
+  --clean-bg: var(--bw-black);
+  --clean-surface: var(--bw-surface);
+  --clean-surface-strong: var(--bw-surface-soft);
+  --clean-border: var(--bw-border);
+  --clean-text: var(--bw-white);
+  --clean-muted: var(--bw-muted);
+  --clean-accent: var(--bw-white);
+  --clean-accent-text: var(--bw-black);
+  --ui-bg: var(--bw-black);
+  --ui-bg-soft: var(--bw-near-black);
+  --ui-panel: var(--bw-surface);
+  --ui-panel-strong: var(--bw-surface-soft);
+  --ui-border: var(--bw-border);
+  --ui-border-strong: var(--bw-border-strong);
+  --ui-text: var(--bw-white);
+  --ui-muted: var(--bw-muted);
+  --ui-accent: var(--bw-white);
+  --ui-accent-hover: var(--bw-button-hover);
+  --ui-accent-text: var(--bw-black);
+  --mc-button-solid: var(--bw-button);
+  --mc-button-solid-hover: var(--bw-button-hover);
+  --mc-button-solid-active: var(--bw-button-active);
+  --mc-button-accent-solid: var(--bw-button);
+  --mc-button-accent-hover: var(--bw-button-hover);
+  --mc-button-red-edge: #3a3a3a;
+  --mc-button-red-edge-dark: #111111;
+}
+
+body {
+  color: var(--bw-white);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.08), transparent 22rem),
+    radial-gradient(circle at 12% 30%, rgba(255, 255, 255, 0.05), transparent 20rem),
+    linear-gradient(180deg, var(--bw-black), var(--bw-near-black));
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  opacity: 0.65;
+}
+
+body::after {
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.03));
+}
+
+.site-shell {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.045), transparent 18rem),
+    radial-gradient(circle at 84% 24%, rgba(255, 255, 255, 0.035), transparent 16rem);
+}
+
+.site-header,
+.site-footer,
+.panel,
+.details-panel,
+.hero-copy,
+.panel-module-node,
+.link-item,
+.project-card,
+.settings-card,
+.schedule-box,
+table,
+.youtube-card,
+.hero-abstract::before {
+  border-color: var(--bw-border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 34%),
+    var(--bw-surface);
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+.hero-copy::before,
+.details-panel::before {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.logo-text,
+.logo-text span,
+.hero-copy h1,
+.section-heading h2,
+.panel-module-label,
+.project-card-title,
+.settings-card h3,
+.schedule-day,
+.youtube-card strong {
+  color: var(--bw-white);
+}
+
+p,
+.lead-copy,
+.panel-module-detail,
+.panel-module-preview span,
+.link-note,
+.project-card-tag,
+.project-card-stats,
+th,
+td,
+.youtube-card small,
+.youtube-feed-state {
+  color: var(--bw-muted);
+}
+
+.section-kicker,
+.panel-module-label,
+.project-card-title,
+.settings-card h3,
+.schedule-day {
+  border-color: var(--bw-border);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--bw-white);
+}
+
+.button,
+.button-accent,
+.panel-module-socials a {
+  background: var(--bw-black);
+  color: var(--bw-button-text);
+  box-shadow:
+    0 7px 0 #2d2d2d,
+    0 11px 0 rgba(0, 0, 0, 0.5);
+}
+
+.button::before,
+.button-accent::before,
+.panel-module-socials a::before {
+  background: var(--bw-button);
+}
+
+.button::after,
+.button-accent::after,
+.panel-module-socials a::after {
+  background: #3a3a3a;
+  box-shadow: 0 4px 0 #111111;
+}
+
+.button:hover,
+.button:focus-visible,
+.button-accent:hover,
+.button-accent:focus-visible,
+.panel-module-socials a:hover,
+.panel-module-socials a:focus-visible {
+  background: var(--bw-black);
+}
+
+.button:hover::before,
+.button:focus-visible::before,
+.button-accent:hover::before,
+.button-accent:focus-visible::before,
+.panel-module-socials a:hover::before,
+.panel-module-socials a:focus-visible::before {
+  background: var(--bw-button-hover);
+}
+
+.button:active::before,
+.button-accent:active::before,
+.panel-module-socials a:active::before {
+  background: var(--bw-button-active);
+}
+
+.panel-module-socials a span:last-child,
+.youtube-feed-state a {
+  color: var(--bw-muted-strong);
+}
+
+/* Black and white theme override. */
+:root {
+  --bw-black: #000000;
+  --bw-near-black: #050505;
+  --bw-panel: rgba(8, 8, 8, 0.94);
+  --bw-panel-soft: rgba(18, 18, 18, 0.96);
+  --bw-border: rgba(255, 255, 255, 0.18);
+  --bw-border-strong: rgba(255, 255, 255, 0.34);
+  --bw-white: #ffffff;
+  --bw-muted: rgba(255, 255, 255, 0.68);
+  --bw-muted-strong: rgba(255, 255, 255, 0.82);
+  --bw-button: #f2f2f2;
+  --bw-button-hover: #ffffff;
+  --bw-button-active: #cfcfcf;
+  --bw-button-text: #080808;
+  --clean-bg: var(--bw-black);
+  --clean-surface: var(--bw-panel);
+  --clean-surface-strong: var(--bw-panel-soft);
+  --clean-border: var(--bw-border);
+  --clean-text: var(--bw-white);
+  --clean-muted: var(--bw-muted);
+  --clean-accent: var(--bw-white);
+  --clean-accent-text: var(--bw-black);
+  --ui-bg: var(--bw-black);
+  --ui-bg-soft: var(--bw-near-black);
+  --ui-panel: var(--bw-panel);
+  --ui-panel-strong: var(--bw-panel-soft);
+  --ui-border: var(--bw-border);
+  --ui-border-strong: var(--bw-border-strong);
+  --ui-text: var(--bw-white);
+  --ui-muted: var(--bw-muted);
+  --ui-accent: var(--bw-white);
+  --ui-accent-hover: var(--bw-button-hover);
+  --ui-accent-text: var(--bw-black);
+  --mc-button-solid: var(--bw-button);
+  --mc-button-solid-hover: var(--bw-button-hover);
+  --mc-button-solid-active: var(--bw-button-active);
+  --mc-button-accent-solid: var(--bw-white);
+  --mc-button-accent-hover: var(--bw-button-hover);
+  --mc-button-red-edge: #3a3a3a;
+  --mc-button-red-edge-dark: #111111;
+}
+
+body {
+  color: var(--bw-white);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.08), transparent 22rem),
+    radial-gradient(circle at 12% 30%, rgba(255, 255, 255, 0.05), transparent 20rem),
+    linear-gradient(180deg, var(--bw-black), var(--bw-near-black));
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  opacity: 0.65;
+}
+
+body::after {
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.03));
+}
+
+.site-shell {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.045), transparent 18rem),
+    radial-gradient(circle at 84% 24%, rgba(255, 255, 255, 0.035), transparent 16rem);
+}
+
+.site-header,
+.site-footer,
+.panel,
+.details-panel,
+.hero-copy,
+.panel-module-node,
+.link-item,
+.project-card,
+.settings-card,
+.schedule-box,
+table,
+.youtube-card,
+.hero-abstract::before {
+  border-color: var(--bw-border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 34%),
+    var(--bw-panel);
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+.hero-copy::before,
+.details-panel::before {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.logo-text,
+.logo-text span,
+.hero-copy h1,
+.section-heading h2,
+.panel-module-label,
+.project-card-title,
+.settings-card h3,
+.schedule-day,
+.youtube-card strong {
+  color: var(--bw-white);
+}
+
+p,
+.lead-copy,
+.panel-module-detail,
+.panel-module-preview span,
+.link-note,
+.project-card-tag,
+.project-card-stats,
+th,
+td,
+.youtube-card small,
+.youtube-feed-state {
+  color: var(--bw-muted);
+}
+
+.section-kicker,
+.panel-module-label,
+.project-card-title,
+.settings-card h3,
+.schedule-day {
+  border-color: var(--bw-border);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--bw-white);
+}
+
+.button,
+.button-accent,
+.panel-module-socials a {
+  background: var(--bw-black);
+  color: var(--bw-button-text);
+  box-shadow:
+    0 7px 0 #2d2d2d,
+    0 11px 0 rgba(0, 0, 0, 0.5);
+}
+
+.button::before,
+.button-accent::before,
+.panel-module-socials a::before {
+  background: var(--bw-button);
+}
+
+.button::after,
+.button-accent::after,
+.panel-module-socials a::after {
+  background: #3a3a3a;
+  box-shadow: 0 4px 0 #111111;
+}
+
+.button:hover,
+.button:focus-visible,
+.button-accent:hover,
+.button-accent:focus-visible,
+.panel-module-socials a:hover,
+.panel-module-socials a:focus-visible {
+  background: var(--bw-black);
+}
+
+.button:hover::before,
+.button:focus-visible::before,
+.button-accent:hover::before,
+.button-accent:focus-visible::before,
+.panel-module-socials a:hover::before,
+.panel-module-socials a:focus-visible::before {
+  background: var(--bw-button-hover);
+}
+
+.button:active::before,
+.button-accent:active::before,
+.panel-module-socials a:active::before {
+  background: var(--bw-button-active);
+}
+
+.panel-module-socials a span:last-child,
+.youtube-feed-state a {
+  color: var(--bw-muted-strong);
+}
+
 /* ABSOLUTE FINAL BUTTON FIX: clean modern buttons, no Minecraft leftovers. */
 :root {
   --final-button-radius: 999px;

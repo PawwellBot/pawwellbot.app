@@ -1,0 +1,929 @@
+/* Final theme layer. Imported after index.css so it wins the cascade. */
+:root {
+  --theme-black: #000000;
+  --theme-near-black: #050505;
+  --theme-surface: rgba(8, 8, 8, 0.96);
+  --theme-border: rgba(255, 255, 255, 0.18);
+  --theme-white: #ffffff;
+  --theme-muted: rgba(255, 255, 255, 0.68);
+  --theme-muted-strong: rgba(255, 255, 255, 0.84);
+  --theme-button: #f2f2f2;
+  --theme-button-hover: #ffffff;
+  --theme-button-active: #cfcfcf;
+  --theme-button-text: #080808;
+  --mc-button-solid: var(--theme-button);
+  --mc-button-solid-hover: var(--theme-button-hover);
+  --mc-button-solid-active: var(--theme-button-active);
+  --mc-button-accent-solid: var(--theme-button);
+  --mc-button-accent-hover: var(--theme-button-hover);
+}
+
+body {
+  color: var(--theme-white) !important;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.08), transparent 22rem),
+    radial-gradient(circle at 12% 30%, rgba(255, 255, 255, 0.05), transparent 20rem),
+    linear-gradient(180deg, var(--theme-black), var(--theme-near-black)) !important;
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px) !important;
+}
+
+body::after {
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.03)) !important;
+}
+
+.site-shell {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.045), transparent 18rem),
+    radial-gradient(circle at 84% 24%, rgba(255, 255, 255, 0.035), transparent 16rem) !important;
+}
+
+.site-header,
+.site-footer,
+.panel,
+.details-panel,
+.hero-copy,
+.panel-module-node,
+.link-item,
+.project-card,
+.settings-card,
+.schedule-box,
+table,
+.youtube-card,
+.hero-abstract::before {
+  border-color: var(--theme-border) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 34%),
+    var(--theme-surface) !important;
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09) !important;
+}
+
+.hero-copy::before,
+.details-panel::before {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.logo-text,
+.logo-text span,
+.hero-copy h1,
+.section-heading h2,
+.panel-module-label,
+.project-card-title,
+.settings-card h3,
+.schedule-day,
+.youtube-card strong {
+  color: var(--theme-white) !important;
+}
+
+p,
+.lead-copy,
+.panel-module-detail,
+.panel-module-preview span,
+.link-note,
+.project-card-tag,
+.project-card-stats,
+th,
+td,
+.youtube-card small,
+.youtube-feed-state {
+  color: var(--theme-muted) !important;
+}
+
+.section-kicker,
+.panel-module-label,
+.project-card-title,
+.settings-card h3,
+.schedule-day {
+  border-color: var(--theme-border) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.button,
+.button-accent,
+.panel-module-socials a {
+  background: var(--theme-black) !important;
+  color: var(--theme-button-text) !important;
+  box-shadow:
+    0 7px 0 #2d2d2d,
+    0 11px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+.button::before,
+.button-accent::before,
+.panel-module-socials a::before {
+  background: var(--theme-button) !important;
+}
+
+.button::after,
+.button-accent::after,
+.panel-module-socials a::after {
+  background: #3a3a3a !important;
+  box-shadow: 0 4px 0 #111111 !important;
+}
+
+.button:hover,
+.button:focus-visible,
+.button-accent:hover,
+.button-accent:focus-visible,
+.panel-module-socials a:hover,
+.panel-module-socials a:focus-visible {
+  background: var(--theme-black) !important;
+}
+
+.button:hover::before,
+.button:focus-visible::before,
+.button-accent:hover::before,
+.button-accent:focus-visible::before,
+.panel-module-socials a:hover::before,
+.panel-module-socials a:focus-visible::before {
+  background: var(--theme-button-hover) !important;
+}
+
+.button:active::before,
+.button-accent:active::before,
+.panel-module-socials a:active::before {
+  background: var(--theme-button-active) !important;
+}
+
+.panel-module-socials a span:last-child,
+.youtube-feed-state a {
+  color: var(--theme-muted-strong) !important;
+}
+
+/* Requested spacing/button pass. */
+.details-panel {
+  padding: clamp(0.55rem, 1.2vh, 0.8rem) !important;
+}
+
+.details-panel::before,
+.hero-abstract::before {
+  display: none !important;
+}
+
+.panel-modules {
+  padding: clamp(0.55rem, 1.2vh, 0.8rem) !important;
+}
+
+.button,
+.button-accent,
+.panel-module-socials a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 2.5rem !important;
+  padding: 0.55rem 1rem !important;
+  clip-path: none !important;
+  border: 1px solid #3f4147 !important;
+  border-radius: 6px !important;
+  background: #2b2d31 !important;
+  color: #f2f3f5 !important;
+  font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+  text-align: center !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none;
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease;
+}
+
+.button::before,
+.button::after,
+.button-accent::before,
+.button-accent::after,
+.panel-module-socials a::before,
+.panel-module-socials a::after {
+  display: none !important;
+  content: none !important;
+}
+
+.button-label,
+.button > *,
+.button-accent > *,
+.panel-module-socials a > * {
+  position: static !important;
+  z-index: auto !important;
+  color: inherit !important;
+  text-shadow: none !important;
+}
+
+.panel-module-socials a {
+  width: 100% !important;
+}
+
+.panel-module-socials,
+.button-grid,
+.link-item {
+  width: 100% !important;
+}
+
+.button-grid .button,
+.link-item .button,
+.panel-module-socials a {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+.panel-module-socials a span:first-child {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.panel-module-socials a span:last-child {
+  display: none !important;
+}
+
+.button:hover,
+.button:focus-visible,
+.button-accent:hover,
+.button-accent:focus-visible,
+.panel-module-socials a:hover,
+.panel-module-socials a:focus-visible {
+  border-color: #4b4d55 !important;
+  background: #35373c !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+.button:active,
+.button-accent:active,
+.panel-module-socials a:active {
+  border-color: #35373c !important;
+  background: #1e1f22 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+.hero-copy {
+  justify-content: flex-start !important;
+  align-items: center !important;
+  padding-top: clamp(2rem, 7vh, 4.5rem) !important;
+  text-align: center !important;
+}
+
+.hero-copy .section-kicker,
+.hero-copy h1,
+.hero-copy .lead-copy,
+.hero-copy .action-row {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.hero-copy h1,
+.hero-copy .lead-copy {
+  text-align: center !important;
+}
+
+.hero-copy h1 {
+  max-width: 12ch !important;
+}
+
+.hero-copy .lead-copy {
+  max-width: 54ch !important;
+}
+
+/* Dashboard reorganization. */
+.site-shell {
+  width: min(100%, 118rem) !important;
+}
+
+.site-header {
+  animation: card-enter 520ms ease both !important;
+}
+
+.hero-panel {
+  display: grid !important;
+  grid-template-columns: minmax(20rem, 0.95fr) minmax(18rem, 0.58fr) minmax(26rem, 1.12fr) !important;
+  grid-template-rows: minmax(30rem, 1fr) minmax(17rem, 0.74fr) !important;
+  gap: clamp(0.85rem, 1.25vw, 1.25rem) !important;
+  align-items: stretch !important;
+  padding: clamp(0.35rem, 0.8vw, 0.75rem) !important;
+}
+
+.hero-copy {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  height: 100% !important;
+  justify-content: center !important;
+  gap: clamp(0.8rem, 1.35vh, 1.15rem) !important;
+  padding: clamp(1.25rem, 2.4vw, 2rem) !important;
+  animation: card-enter 620ms ease 80ms both !important;
+}
+
+.dashboard-card {
+  display: flex !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  padding: clamp(1rem, 1.6vw, 1.55rem) !important;
+  animation: card-enter 620ms ease both !important;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease !important;
+}
+
+.dashboard-card:hover,
+.hero-copy:hover {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  transform: translateY(-3px) !important;
+}
+
+.social-card {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  height: 100% !important;
+  flex-direction: column !important;
+  gap: clamp(0.85rem, 1.3vw, 1.1rem) !important;
+  animation-delay: 160ms !important;
+}
+
+.projects-card {
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  flex-direction: column !important;
+  gap: clamp(0.8rem, 1.1vw, 1rem) !important;
+  animation-delay: 220ms !important;
+}
+
+.videos-card {
+  grid-column: 1 / -1 !important;
+  grid-row: 2 !important;
+  flex-direction: column !important;
+  gap: clamp(0.8rem, 1.1vw, 1rem) !important;
+  animation-delay: 280ms !important;
+}
+
+.dashboard-card-heading {
+  display: grid !important;
+  gap: 0.55rem !important;
+  flex: 0 0 auto !important;
+}
+
+.dashboard-card-heading .section-kicker {
+  width: 100% !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+.dashboard-card-heading span {
+  color: var(--theme-muted) !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+}
+
+.social-button-list {
+  display: grid !important;
+  gap: 0.75rem !important;
+  align-content: start !important;
+  width: 100% !important;
+}
+
+.social-button-list .button {
+  width: 100% !important;
+}
+
+.project-action-list {
+  display: grid !important;
+  gap: 0.8rem !important;
+  margin-top: auto !important;
+}
+
+.project-action-list span {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 3rem !important;
+  padding: 0.7rem 0.9rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 6px !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: var(--theme-muted-strong) !important;
+  font-weight: 800 !important;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease !important;
+}
+
+.project-action-list span:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  transform: translateX(4px) !important;
+}
+
+.hero-stats {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 0.65rem !important;
+  width: min(100%, 38rem) !important;
+  margin-inline: auto !important;
+}
+
+.hero-stats span {
+  display: grid !important;
+  gap: 0.25rem !important;
+  padding: 0.8rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+}
+
+.hero-stats strong {
+  color: var(--theme-white) !important;
+  font-size: 0.86rem !important;
+}
+
+.hero-stats small {
+  color: var(--theme-muted) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+}
+
+.hero-copy .section-kicker {
+  margin-top: 0 !important;
+}
+
+.hero-copy h1 {
+  max-width: 11ch !important;
+  margin-top: clamp(0.35rem, 1vh, 0.85rem) !important;
+  font-size: clamp(2.35rem, 5.6vh, 4.15rem) !important;
+}
+
+.hero-copy .lead-copy {
+  max-width: 48ch !important;
+  font-size: clamp(0.9rem, 1.25vh, 0.98rem) !important;
+}
+
+.hero-copy .action-row {
+  margin-top: 0.2rem !important;
+}
+
+.videos-card .youtube-feed {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  margin-top: 0 !important;
+}
+
+.videos-card .youtube-feed-state {
+  display: grid !important;
+  place-content: center !important;
+  text-align: center !important;
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 1180px) {
+  .hero-panel {
+    grid-template-columns: minmax(18rem, 0.8fr) minmax(22rem, 1fr) !important;
+    grid-template-rows: auto auto auto !important;
+  }
+
+  .hero-copy {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+
+  .social-card {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+
+  .projects-card {
+    grid-column: 1 / span 2 !important;
+    grid-row: 2 !important;
+  }
+
+  .videos-card {
+    grid-column: 1 / span 2 !important;
+    grid-row: 3 !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .page-wrapper {
+    overflow: auto !important;
+  }
+
+  .hero-panel {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: none !important;
+  }
+
+  .hero-copy,
+  .social-card,
+  .projects-card,
+  .videos-card {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .hero-copy,
+  .dashboard-card {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Final UI cleanup: tighter rhythm, no overlap, less empty space. */
+.site-shell {
+  padding: clamp(0.45rem, 0.85vw, 0.85rem) clamp(0.7rem, 1.25vw, 1.2rem) !important;
+}
+
+.site-header {
+  min-height: 3.75rem !important;
+  margin: 0.25rem 0.45rem 0.85rem !important;
+}
+
+.page-wrapper {
+  height: calc(100dvh - 5.25rem) !important;
+  padding-top: 0 !important;
+}
+
+.hero-panel {
+  grid-template-columns: minmax(22rem, 0.92fr) minmax(17rem, 0.56fr) minmax(26rem, 1.12fr) !important;
+  grid-template-rows: minmax(22.5rem, 0.86fr) minmax(19.8rem, 0.88fr) !important;
+  gap: clamp(0.8rem, 1vw, 1rem) !important;
+  padding: 0.45rem !important;
+}
+
+.hero-copy,
+.dashboard-card,
+.videos-card {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+.hero-copy {
+  align-self: stretch !important;
+  height: auto !important;
+  min-height: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(0.7rem, 1.1vh, 0.95rem) !important;
+  padding: clamp(1.25rem, 2vw, 1.8rem) !important;
+}
+
+.social-card,
+.projects-card {
+  align-self: stretch !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.hero-copy .section-kicker {
+  margin: 0 !important;
+}
+
+.hero-copy h1 {
+  max-width: 10ch !important;
+  margin: 0 !important;
+  font-size: clamp(2.55rem, 5.2vh, 3.8rem) !important;
+  line-height: 0.98 !important;
+}
+
+.hero-copy .lead-copy {
+  max-width: 47ch !important;
+  margin: 0 !important;
+  font-size: clamp(0.86rem, 1.18vh, 0.96rem) !important;
+  line-height: 1.62 !important;
+}
+
+.hero-copy .action-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 0.75rem !important;
+  margin: 0.15rem 0 0 !important;
+}
+
+.hero-copy .action-row .button {
+  width: auto !important;
+  min-width: 6rem !important;
+}
+
+.dashboard-card {
+  padding: clamp(0.9rem, 1.25vw, 1.25rem) !important;
+}
+
+.dashboard-card-heading {
+  gap: 0.45rem !important;
+}
+
+.dashboard-card-heading .section-kicker {
+  min-height: 2rem !important;
+  padding: 0.38rem 0.7rem !important;
+  font-size: 0.78rem !important;
+}
+
+.social-card {
+  gap: 0.8rem !important;
+}
+
+.social-button-list {
+  flex: 1 1 auto !important;
+  grid-template-rows: repeat(6, minmax(2.35rem, 1fr)) !important;
+  gap: 0.65rem !important;
+}
+
+.social-button-list .button {
+  min-height: 0 !important;
+}
+
+.projects-card {
+  gap: 0.9rem !important;
+}
+
+.project-action-list {
+  margin-top: 0 !important;
+  align-content: start !important;
+}
+
+.project-action-list span {
+  min-height: 2.95rem !important;
+  padding: 0.7rem 0.85rem !important;
+  background: #242424 !important;
+}
+
+.videos-card {
+  padding: clamp(0.9rem, 1.25vw, 1.25rem) !important;
+}
+
+.videos-card .youtube-feed {
+  align-content: stretch !important;
+}
+
+.youtube-feed {
+  grid-template-columns: repeat(4, minmax(11rem, 1fr)) !important;
+  gap: 1rem !important;
+  align-items: start !important;
+}
+
+.youtube-card {
+  display: block !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transition:
+    transform 160ms ease !important;
+}
+
+.videos-card .youtube-card,
+.videos-card .youtube-card:hover,
+.videos-card .youtube-card:focus-visible {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.youtube-card:hover,
+.youtube-card:focus-visible {
+  transform: translateY(-2px) !important;
+}
+
+.youtube-thumb {
+  position: relative !important;
+  display: block !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  background: #1f2023 !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+}
+
+.youtube-card img {
+  aspect-ratio: 16 / 9 !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+  border: 0 !important;
+  border-radius: inherit !important;
+  background: #1f2023 !important;
+}
+
+.youtube-duration {
+  position: absolute !important;
+  right: 1.6rem !important;
+  left: auto !important;
+  bottom: 1.38rem !important;
+  padding: 0.16rem 0.32rem !important;
+  border-radius: 4px !important;
+  background: rgba(0, 0, 0, 0.86) !important;
+  color: #ffffff !important;
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+.youtube-meta-row {
+  display: grid !important;
+  grid-template-columns: 2.1rem minmax(0, 1fr) !important;
+  gap: 0.55rem !important;
+  align-items: start !important;
+  padding: 0.62rem 0 0 !important;
+}
+
+.youtube-avatar {
+  display: grid !important;
+  place-items: center !important;
+  width: 2.1rem !important;
+  height: 2.1rem !important;
+  border-radius: 50% !important;
+  background: #27292d !important;
+  color: #ffffff !important;
+  font-size: 0.8rem !important;
+  font-weight: 900 !important;
+}
+
+.youtube-copy {
+  display: grid !important;
+  min-width: 0 !important;
+  gap: 0.22rem !important;
+  padding: 0 !important;
+}
+
+.youtube-card strong {
+  display: -webkit-box !important;
+  overflow: hidden !important;
+  color: var(--theme-white) !important;
+  font-size: 0.84rem !important;
+  line-height: 1.25 !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+}
+
+.youtube-card small {
+  color: var(--theme-muted) !important;
+  font-size: 0.72rem !important;
+  font-style: normal !important;
+  line-height: 1.35 !important;
+}
+
+.youtube-card em {
+  display: -webkit-box !important;
+  overflow: hidden !important;
+  color: var(--theme-muted) !important;
+  font-size: 0.82rem !important;
+  font-style: normal !important;
+  line-height: 1.5 !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 3 !important;
+}
+
+.youtube-menu {
+  display: grid !important;
+  place-items: start center !important;
+  padding: 0 !important;
+  color: var(--theme-muted-strong) !important;
+  font-size: 1.25rem !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+}
+
+.videos-card .youtube-feed-state {
+  min-height: 0 !important;
+  height: 100% !important;
+  place-content: center !important;
+  justify-items: center !important;
+  gap: 0.8rem !important;
+}
+
+.videos-card .youtube-feed-state a {
+  margin-top: 0 !important;
+}
+
+/* Video card border reset: only the thumbnail frame should remain. */
+.videos-card .youtube-card,
+.videos-card .youtube-card > span,
+.videos-card .youtube-card .youtube-meta-row,
+.videos-card .youtube-card .youtube-copy {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.videos-card .youtube-card .youtube-thumb {
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 8px !important;
+  background: #1f2023 !important;
+  box-shadow: none !important;
+}
+
+.videos-card .youtube-card .youtube-duration {
+  background: rgba(0, 0, 0, 0.86) !important;
+}
+
+.videos-card .youtube-card .youtube-avatar {
+  background: #27292d !important;
+}
+
+/* Hard video-card frame kill: no inherited wrapper frame can survive this. */
+.videos-card .youtube-feed .youtube-card,
+.videos-card .youtube-feed .youtube-card *,
+.videos-card .youtube-feed .youtube-card::before,
+.videos-card .youtube-feed .youtube-card::after,
+.videos-card .youtube-feed .youtube-card *::before,
+.videos-card .youtube-feed .youtube-card *::after {
+  box-shadow: none !important;
+}
+
+.videos-card .youtube-feed .youtube-card,
+.videos-card .youtube-feed .youtube-card > span,
+.videos-card .youtube-feed .youtube-card .youtube-thumb,
+.videos-card .youtube-feed .youtube-card .youtube-meta-row,
+.videos-card .youtube-feed .youtube-card .youtube-copy {
+  border: 0 !important;
+  outline: 0 !important;
+  background-color: transparent !important;
+}
+
+.videos-card .youtube-feed .youtube-card .youtube-thumb {
+  background: #1f2023 !important;
+}
+
+.videos-card .youtube-feed .youtube-card .youtube-thumb img {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+.videos-card .youtube-feed .youtube-card .youtube-duration {
+  background: rgba(0, 0, 0, 0.86) !important;
+}
+
+.videos-card .youtube-feed .youtube-card .youtube-avatar {
+  background: #27292d !important;
+}
+
+@media (max-width: 1180px) {
+  .page-wrapper {
+    overflow: auto !important;
+  }
+
+  .hero-panel {
+    grid-template-rows: auto auto auto !important;
+  }
+}
+
+/* Unified video item frame: thumbnail and metadata share one border. */
+.videos-card .youtube-feed .youtube-card {
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 12px !important;
+  background: #0f0f0f !important;
+}
+
+.videos-card .youtube-feed .youtube-card .youtube-thumb {
+  border: 0 !important;
+  border-radius: 12px 12px 0 0 !important;
+}
+
+.videos-card .youtube-feed .youtube-card .youtube-thumb img {
+  border-radius: 12px 12px 0 0 !important;
+}
+
+.videos-card .youtube-feed .youtube-card .youtube-meta-row {
+  padding: 0.75rem 0.75rem 0.85rem !important;
+  background: #0f0f0f !important;
+}
