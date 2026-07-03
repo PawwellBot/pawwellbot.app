@@ -6,9 +6,19 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "setup": "npm install",
+    "start": "npm run dev:auto",
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "dev:auto": "bash scripts/dev-server.sh",
+    "dev:open": "vite --host 0.0.0.0 --port 5173 --open",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "vercel:link": "vercel link",
+    "vercel:pull": "vercel pull",
+    "deploy": "npm run deploy:preview",
+    "deploy:check": "vercel deploy --dry --yes",
+    "deploy:preview": "bash scripts/deploy-vercel.sh preview",
+    "deploy:prod": "bash scripts/deploy-vercel.sh production"
   },
   "dependencies": {
     "react": "^18.2.0",
