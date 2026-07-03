@@ -1,17 +1,16 @@
 :root {
   --bg: #050506;
   --bg-soft: #0d0d0f;
-  --panel: rgba(16, 16, 18, 0.94);
+  --panel: rgba(16, 16, 18, 0.95);
   --panel-strong: rgba(24, 24, 27, 0.96);
-  --line: rgba(255, 255, 255, 0.16);
+  --line: rgba(255, 255, 255, 0.15);
   --line-strong: rgba(255, 255, 255, 0.26);
   --text: #ffffff;
   --muted: rgba(255, 255, 255, 0.68);
-  --muted-strong: rgba(255, 255, 255, 0.82);
+  --muted-strong: rgba(255, 255, 255, 0.84);
   --accent: #ffffff;
   --accent-text: #09090a;
-  --radius: 18px;
-  --radius-sm: 12px;
+  --radius: 8px;
   --shadow: 0 18px 48px rgba(0, 0, 0, 0.36);
   font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
 }
@@ -42,12 +41,9 @@ html {
 body {
   color: var(--text);
   font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
-  background:
-    radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.08), transparent 22rem),
-    radial-gradient(circle at 12% 30%, rgba(255, 255, 255, 0.055), transparent 20rem),
-    linear-gradient(180deg, var(--bg), var(--bg-soft));
-  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg), var(--bg-soft) 54%, var(--bg));
   overflow-x: hidden;
+  overflow-y: auto;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -58,10 +54,10 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   background-size: 32px 32px;
-  opacity: 0.55;
+  opacity: 0.58;
 }
 
 a {
@@ -77,17 +73,17 @@ iframe {
 
 p {
   color: var(--muted);
-  font-size: clamp(0.88rem, 1.28vw, 0.98rem);
+  font-size: 0.96rem;
   line-height: 1.65;
 }
 
 .site-shell {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr;
   width: min(100%, 112rem);
-  height: 100dvh;
+  min-height: 100dvh;
   margin: 0 auto;
   padding: clamp(0.75rem, 1.2vw, 1.1rem);
 }
@@ -107,7 +103,6 @@ p {
 }
 
 .site-header {
-  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,7 +112,7 @@ p {
 
 .logo-text {
   color: var(--text);
-  font-size: clamp(1.55rem, 2.25vw, 2rem);
+  font-size: 1.95rem;
   font-weight: 900;
   letter-spacing: 0;
 }
@@ -127,18 +122,19 @@ p {
 }
 
 .page-wrapper {
-  flex: 1 1 auto;
+  min-width: 0;
   min-height: 0;
-  overflow: hidden;
 }
 
 .hero-panel {
   display: grid;
-  grid-template-columns: minmax(20rem, 0.85fr) minmax(24rem, 1.15fr) minmax(18rem, 0.8fr);
-  grid-template-rows: minmax(0, 0.9fr) minmax(15rem, 0.72fr);
+  grid-template-areas:
+    'intro videos videos'
+    'hire proof proof';
+  grid-template-columns: minmax(19rem, 0.86fr) minmax(24rem, 1.14fr) minmax(18rem, 0.8fr);
+  grid-template-rows: auto auto;
   gap: clamp(0.85rem, 1.4vw, 1.15rem);
-  height: 100%;
-  min-height: 0;
+  min-height: calc(100dvh - 6.9rem);
 }
 
 .panel {
@@ -155,18 +151,17 @@ p {
 }
 
 .portfolio-intro {
-  grid-column: 1;
-  grid-row: 1;
+  grid-area: intro;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: clamp(0.8rem, 1.4vh, 1rem);
+  gap: 0.95rem;
 }
 
 .portfolio-mark-link {
   display: inline-flex;
-  width: clamp(5.4rem, 12vh, 8rem);
-  height: clamp(5.4rem, 12vh, 8rem);
+  width: 7.4rem;
+  height: 7.4rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
   background: #000000;
@@ -192,19 +187,19 @@ p {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.1);
   color: var(--muted-strong);
-  font-size: clamp(0.72rem, 1.15vw, 0.82rem);
+  font-size: 0.78rem;
   font-weight: 900;
   line-height: 1.2;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
 .portfolio-intro h1 {
   max-width: 10ch;
   color: var(--text);
-  font-size: clamp(2.45rem, 5vw, 4.45rem);
+  font-size: 4rem;
   font-weight: 900;
-  line-height: 0.98;
+  line-height: 1;
   letter-spacing: 0;
 }
 
@@ -232,7 +227,7 @@ p {
   min-height: 2.9rem;
   padding: 0.78rem 1.1rem;
   border: 1px solid var(--line-strong);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.13);
   color: var(--text);
   font-size: 0.94rem;
@@ -280,15 +275,14 @@ p {
 
 .dashboard-card-heading > span {
   color: var(--muted);
-  font-size: clamp(0.82rem, 1.15vw, 0.95rem);
+  font-size: 0.9rem;
   font-weight: 800;
   line-height: 1.35;
   text-align: right;
 }
 
 .portfolio-video-card {
-  grid-column: 2 / span 2;
-  grid-row: 1;
+  grid-area: videos;
 }
 
 .portfolio-video-grid {
@@ -296,14 +290,12 @@ p {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
   min-height: 0;
-  overflow: auto;
   padding: 0.15rem;
 }
 
 .portfolio-video {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  border-radius: var(--radius-sm);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 42%),
     rgba(0, 0, 0, 0.32);
@@ -313,7 +305,8 @@ p {
 .portfolio-video iframe {
   display: block;
   width: 100%;
-  height: clamp(5.5rem, 13vh, 8rem);
+  height: auto;
+  aspect-ratio: 16 / 9;
   border: 0;
   background: #000000;
 }
@@ -328,7 +321,7 @@ p {
   display: -webkit-box;
   overflow: hidden;
   color: var(--text);
-  font-size: clamp(0.78rem, 1vw, 0.9rem);
+  font-size: 0.88rem;
   font-weight: 900;
   line-height: 1.25;
   -webkit-box-orient: vertical;
@@ -344,13 +337,11 @@ p {
 }
 
 .portfolio-hire-card {
-  grid-column: 1;
-  grid-row: 2;
+  grid-area: hire;
 }
 
 .portfolio-proof-card {
-  grid-column: 2 / span 2;
-  grid-row: 2;
+  grid-area: proof;
 }
 
 .hire-link-grid {
@@ -370,18 +361,17 @@ p {
 
 .client-grid {
   display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
   min-height: 0;
-  overflow: auto;
 }
 
 .client-card {
   display: grid;
-  grid-template-columns: clamp(3.4rem, 7vh, 4.7rem) minmax(0, 1fr);
+  grid-template-columns: 4.1rem minmax(0, 1fr);
   gap: 0.9rem;
-  align-items: center;
+  align-items: start;
   padding: 0.78rem;
-  border-radius: var(--radius-sm);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 44%),
     rgba(0, 0, 0, 0.26);
@@ -391,7 +381,7 @@ p {
 .client-avatar {
   display: block;
   aspect-ratio: 1;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
   background: #000000;
   overflow: hidden;
 }
@@ -410,7 +400,7 @@ p {
   display: block;
   margin-bottom: 0.3rem;
   color: var(--text);
-  font-size: clamp(0.9rem, 1.15vw, 1rem);
+  font-size: 0.98rem;
   font-weight: 900;
 }
 
@@ -418,16 +408,42 @@ p {
   display: -webkit-box;
   overflow: hidden;
   margin: 0;
-  font-size: clamp(0.78rem, 1vw, 0.92rem);
+  font-size: 0.86rem;
   line-height: 1.45;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 4;
 }
 
-@media (min-width: 901px) {
+@media (min-width: 1181px) and (min-height: 760px) {
+  .site-shell {
+    height: 100dvh;
+  }
+
+  .page-wrapper {
+    overflow: hidden;
+  }
+
+  .hero-panel {
+    height: 100%;
+    min-height: 0;
+    grid-template-rows: minmax(0, 0.95fr) minmax(15rem, 0.68fr);
+  }
+
+  .portfolio-video-grid,
+  .client-grid {
+    overflow: auto;
+  }
+
+  .portfolio-video iframe {
+    height: clamp(5.2rem, 9vh, 6.6rem);
+    aspect-ratio: auto;
+  }
+}
+
+@media (min-width: 1181px) {
   .portfolio-intro {
     position: relative;
-    gap: 0.7rem;
+    gap: 0.72rem;
   }
 
   .portfolio-intro .portfolio-mark-link {
@@ -443,63 +459,52 @@ p {
   }
 
   .portfolio-intro h1 {
-    font-size: clamp(2.25rem, 4vw, 3.55rem);
+    font-size: 3.55rem;
     line-height: 1.02;
   }
 
   .portfolio-intro .lead-copy {
     max-width: 38ch;
-    font-size: clamp(0.84rem, 1vw, 0.94rem);
+    font-size: 0.92rem;
   }
 }
 
 @media (max-width: 1180px) {
   .hero-panel {
-    grid-template-columns: minmax(19rem, 0.8fr) minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr) minmax(13rem, 0.72fr) minmax(12rem, 0.65fr);
-  }
-
-  .portfolio-intro {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .portfolio-video-card,
-  .portfolio-proof-card,
-  .portfolio-hire-card {
-    grid-column: 2;
-  }
-
-  .portfolio-video-card {
-    grid-row: 1;
-  }
-
-  .portfolio-proof-card {
-    grid-row: 2;
-  }
-
-  .portfolio-hire-card {
-    grid-row: 3;
+    grid-template-areas:
+      'intro videos'
+      'hire videos'
+      'proof proof';
+    grid-template-columns: minmax(18rem, 0.82fr) minmax(0, 1.18fr);
+    min-height: 0;
   }
 
   .portfolio-video-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .portfolio-video iframe {
-    height: clamp(5.2rem, 11vh, 6.6rem);
+  .client-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .portfolio-intro h1 {
+    font-size: 3.25rem;
+  }
+
+  .client-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .client-copy p {
+    -webkit-line-clamp: 3;
   }
 }
 
 @media (max-width: 900px) {
-  body {
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-
   .site-shell {
-    height: auto;
-    min-height: 100dvh;
+    padding: 0.85rem;
   }
 
   .page-wrapper {
@@ -507,27 +512,33 @@ p {
   }
 
   .hero-panel {
-    grid-template-columns: 1fr;
+    grid-template-areas:
+      'intro'
+      'videos'
+      'proof'
+      'hire';
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto;
     height: auto;
   }
 
   .portfolio-intro,
-  .portfolio-video-card,
-  .portfolio-proof-card,
-  .portfolio-hire-card {
-    grid-column: 1;
-    grid-row: auto;
+  .dashboard-card {
+    padding: 1.15rem;
+  }
+
+  .portfolio-mark-link {
+    width: 6.4rem;
+    height: 6.4rem;
+  }
+
+  .portfolio-intro h1 {
+    max-width: 12ch;
+    font-size: 3rem;
   }
 
   .portfolio-video-grid {
-    grid-template-columns: 1fr;
     overflow: visible;
-  }
-
-  .portfolio-video iframe {
-    height: auto;
-    aspect-ratio: 16 / 9;
   }
 
   .client-grid {
@@ -535,26 +546,26 @@ p {
   }
 
   .client-copy p {
-    -webkit-line-clamp: unset;
+    display: block;
+    overflow: visible;
   }
 }
 
-@media (max-width: 560px) {
-  .site-shell {
-    padding: 0.65rem;
+@media (max-width: 680px) {
+  p {
+    font-size: 0.93rem;
   }
 
   .site-header {
     min-height: 3.7rem;
   }
 
-  .portfolio-intro,
-  .dashboard-card {
-    padding: 1rem;
+  .logo-text {
+    font-size: 1.65rem;
   }
 
-  .portfolio-intro h1 {
-    font-size: clamp(2.25rem, 13vw, 3.3rem);
+  .portfolio-video-grid {
+    grid-template-columns: 1fr;
   }
 
   .dashboard-card-heading {
@@ -565,16 +576,50 @@ p {
     text-align: left;
   }
 
-  .client-card {
-    grid-template-columns: 3.8rem minmax(0, 1fr);
-  }
-
   .hire-link-grid {
     grid-template-columns: 1fr;
   }
 
   .button {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-shell {
+    padding: 0.65rem;
+  }
+
+  .portfolio-intro,
+  .dashboard-card {
+    padding: 1rem;
+  }
+
+  .portfolio-intro h1 {
+    font-size: 2.58rem;
+  }
+
+  .lead-copy {
+    font-size: 0.91rem;
+  }
+
+  .client-card {
+    grid-template-columns: 3.45rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .portfolio-intro h1 {
+    font-size: 2.32rem;
+  }
+
+  .client-card {
+    grid-template-columns: 1fr;
+  }
+
+  .client-avatar {
+    width: 3.6rem;
   }
 }
 
